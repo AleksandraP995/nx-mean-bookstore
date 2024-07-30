@@ -1,28 +1,28 @@
 {
-  "name": "nx-bookstore",
+  "name": "client",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "prefix": "app",
-  "sourceRoot": "apps/nx-bookstore/src",
+  "sourceRoot": "apps/client/src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/nx-bookstore/browser",
-        "index": "apps/nx-bookstore/src/index.html",
-        "main": "apps/nx-bookstore/src/main.ts",
+        "outputPath": "dist/apps/client/browser",
+        "index": "apps/client/src/index.html",
+        "main": "apps/client/src/main.ts",
         "polyfills": ["zone.js"],
-        "tsConfig": "apps/nx-bookstore/tsconfig.app.json",
+        "tsConfig": "apps/client/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/nx-bookstore/public"
+            "input": "apps/client/public"
           }
         ],
-        "styles": ["apps/nx-bookstore/src/styles.scss"],
+        "styles": ["apps/client/src/styles.scss"],
         "scripts": []
       },
       "configurations": {
@@ -56,10 +56,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "nx-bookstore:build:production"
+          "buildTarget": "client:build:production"
         },
         "development": {
-          "buildTarget": "nx-bookstore:build:development"
+          "buildTarget": "client:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -67,7 +67,7 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "buildTarget": "nx-bookstore:build"
+        "buildTarget": "client:build"
       }
     },
     "lint": {
@@ -77,16 +77,16 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/nx-bookstore/jest.config.ts"
+        "jestConfig": "apps/client/jest.config.ts"
       }
     },
     "server": {
       "dependsOn": ["build"],
       "executor": "@angular-devkit/build-angular:server",
       "options": {
-        "outputPath": "dist/apps/nx-bookstore/server",
-        "main": "apps/nx-bookstore/server.ts",
-        "tsConfig": "apps/nx-bookstore/tsconfig.server.json",
+        "outputPath": "dist/apps/client/server",
+        "main": "apps/client/server.ts",
+        "tsConfig": "apps/client/tsconfig.server.json",
         "inlineStyleLanguage": "scss"
       },
       "configurations": {
@@ -107,12 +107,12 @@
       "executor": "@angular-devkit/build-angular:ssr-dev-server",
       "configurations": {
         "development": {
-          "browserTarget": "nx-bookstore:build:development",
-          "serverTarget": "nx-bookstore:server:development"
+          "browserTarget": "client:build:development",
+          "serverTarget": "client:server:development"
         },
         "production": {
-          "browserTarget": "nx-bookstore:build:production",
-          "serverTarget": "nx-bookstore:server:production"
+          "browserTarget": "client:build:production",
+          "serverTarget": "client:server:production"
         }
       },
       "defaultConfiguration": "development"
@@ -124,12 +124,12 @@
       },
       "configurations": {
         "development": {
-          "browserTarget": "nx-bookstore:build:development",
-          "serverTarget": "nx-bookstore:server:development"
+          "browserTarget": "client:build:development",
+          "serverTarget": "client:server:development"
         },
         "production": {
-          "browserTarget": "nx-bookstore:build:production",
-          "serverTarget": "nx-bookstore:server:production"
+          "browserTarget": "client:build:production",
+          "serverTarget": "client:server:production"
         }
       },
       "defaultConfiguration": "production"
