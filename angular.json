@@ -39,21 +39,41 @@
                 "budgets": [
                   {
                     "type": "initial",
-                    "maximumWarning": "2mb",
-                    "maximumError": "5mb"
+                    "maximumWarning": "20mb",
+                    "maximumError": "25mb"
                   }
                 ]
-              }
+              },
+              "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "aot": false,
+              "extractLicenses": false,
+              "vendorChunk": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "10mb",
+                  "maximumError": "15mb"
+                }
+              ]
+            }
             }
           },
           "serve": {
             "builder": "@angular-devkit/build-angular:dev-server",
             "options": {
-              "browserTarget": "client:build"
+              "buildTarget": "client:build",
+              "proxyConfig": "apps/client/proxy.conf.json"
             },
             "configurations": {
               "production": {
-                "browserTarget": "client:build:production"
+                "buildTarget": "client:build:production"
+              },
+              "development": {
+                "buildTarget": "client:build:development"
               }
             }
           }
@@ -96,6 +116,8 @@
         }
       }
     },
-    "defaultProject": "client"
+    "cli": {
+      "analytics": false
+    }
   }
   

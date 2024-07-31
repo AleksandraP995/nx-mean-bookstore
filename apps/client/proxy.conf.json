@@ -1,0 +1,19 @@
+{
+    "/api": {
+      "target": "http://localhost:3000",
+      "secure": false,
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/api": ""
+      }
+    },
+    "/google-books-api": {
+      "target": "https://www.googleapis.com",
+      "secure": true,
+      "changeOrigin": true,
+      "logLevel": "debug",
+      "pathRewrite": {
+        "^/google-books-api": ""
+      }
+    }
+  }

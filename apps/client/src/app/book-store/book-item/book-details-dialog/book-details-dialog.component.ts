@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ShoppingCartService } from '../../../../services/shopping-cart-service/shopping-cart.service';
 import { FavoritesListService } from '../../../../services/favorites-list-service/favorites-list.service';
-import { BookItem } from '../../../../models/bookItem/bookItem';
+import { BookItem, bookForDisplay} from '../../../../models/bookItem/bookItem';
 import { Subscription } from 'rxjs';
 import { BookstoreUser } from '../../../../models/user';
 import { AuthService } from '../../../../services/auth-service/auth.service';
@@ -13,7 +13,7 @@ import { AuthService } from '../../../../services/auth-service/auth.service';
   styleUrls: ['./book-details-dialog.component.scss']
 })
 export class BookDetailsDialogComponent implements OnInit {
-  book: BookItem = this.data;
+  book: BookItem = bookForDisplay;
   fullDescription = this.book?.volumeInfo.description || '';
 
   userSubscription = new Subscription();
@@ -29,6 +29,8 @@ export class BookDetailsDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // proveri
+    this.data = this.book;
     this.favoritesService.isFavoriteObservable$.subscribe(isFavorite => {
       this.favoritesService.isFoundInFavorites = isFavorite;
     });
@@ -40,12 +42,10 @@ export class BookDetailsDialogComponent implements OnInit {
   }
 
   addBookToShoppingList() {
-    debugger;
     this.shoppingService.toggleShoppingList(this.book, this.currentUser);
   }
 
   addBookToFavoritesList() {
-    debugger;
     this.favoritesService.toggleFavorite(this.book, this.currentUser);
   }
 

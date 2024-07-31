@@ -29,7 +29,7 @@ export class AuthService {
     private readonly http: HttpClient
   ) {}
 
-  isAdmin: boolean = false;
+  // isAdmin: boolean = false;
 
   userSubject = new BehaviorSubject<BookstoreUser | null>(null);
   userSubscription = new Subscription();

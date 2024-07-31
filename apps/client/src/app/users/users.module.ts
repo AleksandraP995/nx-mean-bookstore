@@ -6,8 +6,6 @@ import { RemoveDialogComponent } from './users-list/remove-user-dialog/remove-di
 import { SharedModule } from '../shared-module/shared.module';
 import { UserCardComponent } from './users-list/user-card/user-card.component';
 import { UsersListComponent } from './users-list/users-list.component';
-import { provideAuth } from '@angular/fire/auth';
-import { AngularFireModule } from '@angular/fire/compat';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -21,9 +19,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { getAuth } from 'firebase/auth';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { environment } from '../../environments/environment';
 import { UsersRoutingModule } from './users-routing.module';
 
 @NgModule({
@@ -53,8 +49,6 @@ import { UsersRoutingModule } from './users-routing.module';
     MatStepperModule,
     MatButtonModule,
     MatCardModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    provideAuth(() => getAuth()),
     UsersRoutingModule
   ],
   exports: [

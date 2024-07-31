@@ -4,8 +4,6 @@ import { TruncatePipe } from '../shared-module/truncate.pipe';
 import { ClickOutsideDirective } from './click-outside.directive';
 import { SignupComponent } from './signup/signup.component';
 import { LoadingSpinnerComponent } from '../shared-module/loading-spinner/loading-spinner.component';
-import { provideAuth } from '@angular/fire/auth';
-import { AngularFireModule } from '@angular/fire/compat';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -19,9 +17,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { getAuth } from 'firebase/auth';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { environment } from '../../environments/environment';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 import { SharedRoutingModule } from './shared.routing.module';
@@ -52,8 +48,6 @@ import { SharedRoutingModule } from './shared.routing.module';
     MatStepperModule,
     MatButtonModule,
     MatCardModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    provideAuth(() => getAuth()),
     SharedRoutingModule
   ],
   exports: [

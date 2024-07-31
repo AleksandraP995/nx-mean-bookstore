@@ -6,5 +6,5 @@
     "target": "es2019",
     "types": ["node"]
   },
-  "files": ["src/main.server.ts", "main.ts"]
+  "files": ["src/main.server.ts", "main.ts", "src/polyfills.ts"]
 }

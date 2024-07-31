@@ -1,4 +1,4 @@
-<div *ngIf="isLoading == false; else showLoader">
+<div *ngIf="isLoading === false; else showLoader">
   <h5>Users</h5>
   <div>Current user: {{ loggedInUser?.username }}</div>
   <div *ngIf="users.length > 0; else noUsers">

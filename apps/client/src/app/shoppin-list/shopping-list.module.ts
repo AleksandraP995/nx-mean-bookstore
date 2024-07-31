@@ -7,8 +7,6 @@ import { DiscountCodeFormComponent } from './discount-code-form/discount-code-fo
 import { TotalPricePanelComponent } from './total-price-panel/total-price-panel.component';
 import { ShoppingStepperComponent } from './shopping-stepper/shopping-stepper.component';
 import { RouterModule } from '@angular/router';
-import { provideAuth } from '@angular/fire/auth';
-import { AngularFireModule } from '@angular/fire/compat';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -22,9 +20,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { getAuth } from 'firebase/auth';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { environment } from '../../environments/environment';
 import { SharedModule } from '../shared-module/shared.module';
 
 @NgModule({
@@ -54,8 +50,6 @@ import { SharedModule } from '../shared-module/shared.module';
     MatStepperModule,
     MatButtonModule,
     MatCardModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    provideAuth(() => getAuth()),
     SharedModule,
   ]
 })

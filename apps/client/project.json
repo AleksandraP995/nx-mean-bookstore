@@ -30,13 +30,13 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumWarning": "20mb",
+              "maximumError": "25mb"
             },
             {
               "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4kb"
+              "maximumWarning": "20mb",
+              "maximumError": "20mb"
             }
           ],
           "outputHashing": "all"
@@ -107,11 +107,11 @@
       "executor": "@angular-devkit/build-angular:ssr-dev-server",
       "configurations": {
         "development": {
-          "browserTarget": "client:build:development",
+          "buildTarget": "client:build:development",
           "serverTarget": "client:server:development"
         },
         "production": {
-          "browserTarget": "client:build:production",
+          "buildTarget": "client:build:production",
           "serverTarget": "client:server:production"
         }
       },
@@ -124,11 +124,11 @@
       },
       "configurations": {
         "development": {
-          "browserTarget": "client:build:development",
+          "buildTarget": "client:build:development",
           "serverTarget": "client:server:development"
         },
         "production": {
-          "browserTarget": "client:build:production",
+          "buildTarget": "client:build:production",
           "serverTarget": "client:server:production"
         }
       },

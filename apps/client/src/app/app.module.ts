@@ -18,9 +18,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { environment } from '../environments/environment';
-import { AngularFireModule } from '@angular/fire/compat';
-import { provideAuth, getAuth } from '@angular/fire/auth';
 import { AuthInterceptorService } from './authentication/interceptors/auth-interceptor.service';
 import { PlaceHolderDirective } from './users/hello-component/placeholder-directive';
 import { ShoppingListModule } from '../app/shoppin-list/shopping-list.module';
@@ -28,6 +25,7 @@ import { SharedModule } from './shared-module/shared.module';
 import { FavoritesModule } from './favorites/favorites.module';
 import { BookStoreModule } from './book-store/book-store.module';
 import { UsersModule } from './users/users.module';
+import { CoreModule } from './core.module';
 
 @NgModule({
   declarations: [AppComponent, PlaceHolderDirective],
@@ -51,13 +49,12 @@ import { UsersModule } from './users/users.module';
     MatStepperModule,
     MatButtonModule,
     MatCardModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    provideAuth(() => getAuth()),
     SharedModule,
     FavoritesModule,
     ShoppingListModule,
     BookStoreModule,
     UsersModule,
+    CoreModule
   ],
   exports: [MatFormFieldModule, ShoppingListModule],
   providers: [

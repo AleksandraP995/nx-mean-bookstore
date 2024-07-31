@@ -1,5 +1,5 @@
 <div class="container">
-  <div *ngIf="isLoading == false; else showLoader">
+  <div *ngIf="isLoading === false; else showLoader">
     <mat-card>
       <mat-card-content>
         <h2>{{ submitType === 'Sign Up' ? 'Sign Up' : 'Add new user' }}</h2>
