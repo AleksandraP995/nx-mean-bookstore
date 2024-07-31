@@ -1,6 +1,7 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "defaultBase": "master",
+  "useDaemonProcess": false,
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
@@ -60,7 +61,14 @@
       "unitTestRunner": "jest"
     }
   },
-  "useDaemonProcess": false,
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
+  },
   "nxCloudAccessToken": "ZGI1NmMwZGYtNWQzMy00ZmQ4LWFlMjQtYWZmYjE3MWRiZTYyfHJlYWQtd3JpdGU=",
   "plugins": [
     {
@@ -69,5 +77,12 @@
         "targetName": "eslint:lint"
       }
     }
-  ]
+  ],
+  "tasksRunnerOptions": {
+    "default": {
+      "options": {
+        "useDaemonProcess": false
+      }
+    }
+  }
 }

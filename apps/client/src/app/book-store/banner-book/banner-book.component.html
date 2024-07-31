@@ -1,0 +1,18 @@
+
+<div>
+    <div class="book-segment">
+        <h4><b>{{retrievedBannerBook.volumeInfo.title}}</b></h4>
+        <h5><i> by {{retrievedBannerBook.volumeInfo.authors[0]}}</i></h5>
+        <br>
+        <h6 class ="letters-info"><i>{{retrievedBannerBook.volumeInfo.description | truncate:300}}</i></h6>
+        <div *ngIf="retrievedBannerBook.volumeInfo.previewLink" class="link-container">
+            <span class ="link-text">Sounds interesting? Check it out </span>
+            <a href="{{retrievedBannerBook.volumeInfo.previewLink}}" target="_blank" matTooltip="Link to more info" class="mat-icon-styling">
+              <mat-icon aria-hidden="false" aria-label="More Info">link</mat-icon>
+            </a>
+          </div>
+    </div>
+</div>
+
+   
+

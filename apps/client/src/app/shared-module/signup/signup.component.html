@@ -1,0 +1,94 @@
+<div class="container">
+  <div *ngIf="isLoading == false; else showLoader">
+    <mat-card>
+      <mat-card-content>
+        <h2>{{ submitType === 'Sign Up' ? 'Sign Up' : 'Add new user' }}</h2>
+        <form *ngIf = 'signupForm' [formGroup]="signupForm">
+          <mat-form-field appearance="fill">
+            <mat-label for="name">Name:</mat-label>
+            <input
+              type="text"
+              matInput
+              id="name"
+              formControlName="name"
+              placeholder="Enter name"
+            />
+            <mat-error *ngIf="nameError">{{ nameError }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label for="username">Username:</mat-label>
+            <input
+              type="text"
+              matInput
+              id="username"
+              formControlName="username"
+              placeholder="Enter username"
+            />
+            <mat-error *ngIf="usernameError">{{ usernameError }}</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label for="email">Email:</mat-label>
+            <input
+              type="email"
+              matInput
+              id="email"
+              formControlName="email"
+              placeholder="Enter email"
+            />
+            <mat-error *ngIf="emailError">{{ emailError }}</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label for="password">Password:</mat-label>
+            <input
+              type="password"
+              matInput
+              id="password"
+              formControlName="password"
+              placeholder="Enter password"
+            />
+            <mat-error *ngIf="passwordError">{{ passwordError }}</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label for="confirmPassword">Confirm Password:</mat-label>
+            <input
+              type="password"
+              id="confirmPassword"
+              formControlName="confirmPassword"
+              matInput
+              placeholder="ReEnter password"
+            />
+
+            <mat-error
+              *ngIf="
+                confirmPassword?.hasError('passwordMismatch')
+              "
+            >
+            {{ confirmPasswordError }}
+            </mat-error>
+          </mat-form-field>
+
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            (click)="onSubmit(signupForm)"
+          >
+          {{ submitType === 'Sign up' ? 'Sign up' : 'Add' }}
+          </button>
+        </form>
+        <h6>
+          Already have an account? Switch to
+          <a routerLink="/login" class="signup-link"> login</a>
+        </h6>
+      </mat-card-content>
+    </mat-card>
+</div>
+
+
+<ng-template #showLoader>
+  <div class="loading-spinner">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+</ng-template>
+

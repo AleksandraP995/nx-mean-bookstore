@@ -1,0 +1,60 @@
+<div class="container">
+  <div *ngIf="isLoading == false; else showLoader">
+    <mat-card>
+      <mat-card-content>
+        <h2>Log In</h2>
+        <form *ngIf="registrationForm" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="fill">
+            <mat-label for="email">Email:</mat-label>
+            <input
+              type="email"
+              matInput
+              id="email"
+              formControlName="email"
+              placeholder="Enter email"
+            />
+
+            <mat-error *ngIf="emailError">{{ emailError }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label for="name">Username:</mat-label>
+            <input
+              type="text"
+              matInput
+              id="username"
+              formControlName="username"
+              placeholder="Enter username"
+            />
+            <mat-error *ngIf="usernameError">{{ usernameError }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label for="password">Password:</mat-label>
+            <input
+              type="password"
+              matInput
+              id="password"
+              formControlName="password"
+              placeholder="Enter password"
+            />
+            <mat-error *ngIf="passwordError">{{ passwordError }}</mat-error>
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="submit">Login</button>
+        </form>
+        <h6>
+          Don't have an account? Switch to
+          <a routerLink="/signup" class="signup-link">signup</a>
+        </h6>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<ng-template #showLoader>
+  <div class="loading-spinner">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+</ng-template>
+
+<!-- [disabled]="registrationForm.invalid" -->

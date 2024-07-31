@@ -1,0 +1,32 @@
+<mat-dialog-actions align="end">
+    <mat-icon (click)="onClose()">close</mat-icon>
+    <!-- <button mat-button mat-dialog-close (click)="onClose()">Close</button> -->
+  </mat-dialog-actions>
+<mat-dialog-content>
+  <div class="dialog-content">
+    <div class="image-container">
+        <img src='{{book?.volumeInfo?.imageLinks?.smallThumbnail}}' class="img-fluid"> 
+    </div>
+    <div class="info-container">
+      <h4><b>{{ book.volumeInfo.title }}</b></h4>
+      <p><i>{{ book.volumeInfo.authors }}</i></p>
+      <br>
+      <p>{{fullDescription | truncate:250}}</p>
+      <br>
+      <div *ngIf="book.volumeInfo.previewLink" class="link-container">
+        <span class ="link-text">Sounds interesting? Check it out </span>
+        <a href="{{book.volumeInfo.previewLink}}" target="_blank" matTooltip="Link to more info" class="mat-icon-styling">
+          <mat-icon aria-hidden="false" aria-label="More Info">link</mat-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="start" class="icons-group">
+  <mat-icon class="mat-icon-custom" (click) = "addBookToFavoritesList()">
+    {{ favoritesService.favoritesList.length == 0 ? 'favorite_border' : (favoritesService.checkIfInFavorites(data) ? 'favorite' : 'favorite_border')}}
+  </mat-icon>
+  <mat-icon class="mat-icon-custom" (click) = "addBookToShoppingList()">add_shopping_cart</mat-icon>
+  <mat-icon class="mat-icon-custom">share</mat-icon>
+</mat-dialog-actions>
+

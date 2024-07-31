@@ -1,0 +1,72 @@
+@import "../../../sass/colors";
+
+.book-card {
+    border: 2px solid $active-tab-color;
+    height: 200px;
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    align-items: center;
+    margin-bottom: 2em;
+    position: relative;
+    overflow: hidden;
+  }
+  .img-fluid {
+    width: 111px; 
+    height: 181px; 
+    transition: transform 0.3s ease; 
+  }
+
+  .book-card:hover .img-fluid {
+    transform: scale(1.1); /* Example: Enlarge image on hover */
+  }
+
+  .book-card:hover .additional-info {
+      transform: translateY(0); /* Show additional info on hover */
+  }
+  .additional-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+    color: white; /* Text color */
+    padding: 10px; /* Adjust padding as needed */
+    box-sizing: border-box;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.book-title {
+    margin: 0;
+    font-weight: bold;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 3px); /* Adjust for ellipsis width */
+}
+
+.book-description {
+    font-size: 10px;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+} 
+
+.icons {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+}
+
+.icons mat-icon {
+  color: $active-tab-color;
+  margin-bottom: 5px;
+}
+
+

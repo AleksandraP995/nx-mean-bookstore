@@ -1,0 +1,114 @@
+@import '../../sass/colors';
+.container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .left {
+    width: 25%;
+  }
+  
+  .right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 40%;
+  }
+  
+  .item-search {
+    width: 25%;
+    margin-top: 1.5em;
+  }
+
+  .item-shopping-cart{
+    margin-left: 2em;
+    margin-top: .5em;
+    width: 10%;
+    color:#c7c5c5;
+  }
+
+  .item {
+    width: 10%;
+  }
+
+  .navbar {
+    border-radius: 5px;
+    box-shadow: none;
+    background-color: rgba(255, 255, 255, 0.413);
+    transition: opacity 0.3s ease-in-out;
+    min-height: 20px !important
+  }
+  .navbar:hover,
+  .navbar:focus {
+      opacity: 1;
+      background-color: rgba(255, 255, 255, 1);
+      box-shadow: none!important;
+  }
+
+  .circle {
+    width: 30px; 
+    height: 30px; 
+    background-color: $active-tab-color-dark;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px; 
+    color: #ffffff; 
+    font-family: Arial, sans-serif;
+    text-transform: uppercase;
+  }
+  
+
+  .header {
+    display: flex;
+    align-items: center;
+    margin-right: 4.2em;
+  }
+  
+  .shopping-cart {
+    color: #c7c5c5;
+  }
+  .logo,
+  .search-bar,
+  .profile-icon {
+    padding: 10px;
+  }
+  
+  .spacer {
+    flex-grow: 1;
+  }
+  
+  .search-bar {
+    margin-top: 1em;
+  }
+    /* Style for the container of the favorites icon and badge */
+  .favorites-icon-container {
+    position: relative;
+    margin-right: .7em;
+  }
+
+  .badge {
+    position: absolute;
+    top: 0;
+    right: -8px; 
+    background-color: $active-tab-color; /* Adjust background color as needed */
+    color: #c7c5c5; /* Adjust text color as needed */
+    border-radius: 50%;
+    padding: 4px 8px; 
+    font-size: 12px; 
+  }
+
+  .button-favorites {
+    background-color: transparent;
+    border: none;
+  }
+  
+  .favroites-icon {
+    color: #c7c5c5;
+  }
+
+  .has-favorites {
+    color: white;
+  }
+  

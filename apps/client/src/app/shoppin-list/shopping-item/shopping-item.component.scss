@@ -1,0 +1,64 @@
+@import"../../../sass/colors";
+
+.container {
+    display: flex;
+    justify-content: space-between; 
+  }
+  
+  .title {
+    text-align: center; 
+    padding: 10px;
+    flex: 1
+  }
+
+
+.title-fixed-width {
+  width: 100px; 
+  padding: 10px;
+}
+
+.quantity-counter {
+    display: flex;
+    align-items: center;
+  }
+  
+  button {
+    cursor: pointer;
+  }
+  
+.quantity-number {
+    margin-left: .5em;
+    margin-right: .5em;
+}
+
+.remove-icon {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ background-color: transparent;
+ border: none;
+ margin-right: 1em
+}
+
+@media screen and (min-width: 992px) {
+    .container {
+        width: 800px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .container {
+        width: 650px;
+    }
+}
+@media screen and (max-width: 768px){
+    .container {
+        width: 450px;
+    }
+}
+
+@media screen and (max-width: 576px){
+    .title {
+        display: none;
+    }
+}

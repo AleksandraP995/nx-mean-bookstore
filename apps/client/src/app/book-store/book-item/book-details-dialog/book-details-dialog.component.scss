@@ -1,0 +1,33 @@
+@import '../../../../sass/colors';
+@import "../../../../sass/styles.scss";
+
+.img-fluid {
+    width: 252px; 
+    height: 330px; 
+    transition: transform 0.3s ease; 
+  }
+
+.dialog-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .image-container {
+    flex: 1;
+  }
+  
+  .info-container {
+    flex: 1;
+    padding-left: 16px;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+.mat-icon-custom {
+  margin-right: 1.5em;
+  color: $active-tab-color-dark;
+}

@@ -85,7 +85,7 @@
       "executor": "@angular-devkit/build-angular:server",
       "options": {
         "outputPath": "dist/apps/client/server",
-        "main": "apps/client/server.ts",
+        "main": "apps/client/main.ts",
         "tsConfig": "apps/client/tsconfig.server.json",
         "inlineStyleLanguage": "scss"
       },

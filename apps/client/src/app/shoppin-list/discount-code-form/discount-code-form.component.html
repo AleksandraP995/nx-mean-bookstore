@@ -1,0 +1,28 @@
+
+  <div class="coupon-code-container">
+    <button mat-raised-button color="primary" (click)="showInputField = !showInputField" [class.expanded]="showInputField"  class="button-shopping-cart">
+      <ng-container *ngIf="!showInputField">Coupon Code</ng-container>
+    </button>
+    <div class="input-field" *ngIf="showInputField" class="bla">
+     
+      <div [formGroup]="discountForm"> 
+        <mat-form-field appearance="fill">
+          <mat-label>Discount Code</mat-label>
+          <input matInput formControlName="discountCode" placeholder="Enter code"> 
+          <mat-error *ngIf="discountForm.get('discountCode')?.hasError('lowercaseLetter')">Discount code must start with a lowercase letter</mat-error>
+          <mat-error *ngIf="discountForm.get('discountCode')?.hasError('hasNumber')">Discount code must contain at least one number</mat-error>
+          <mat-error *ngIf="discountForm.get('discountCode')?.hasError('minLength')">Discount code must be at least 6 characters long</mat-error>
+        </mat-form-field>
+        <button mat-raised-button class="button-shopping-cart" color="primary" type="button"
+              [disabled]="discountForm.invalid || couponCodeAlreadyUsed"
+              (click)="applyDiscount()" [matTooltip]="tooltipMessage" matTooltipPosition="above">
+              Apply
+        </button>
+
+      </div>
+    </div>
+    
+  </div>
+  
+
+  

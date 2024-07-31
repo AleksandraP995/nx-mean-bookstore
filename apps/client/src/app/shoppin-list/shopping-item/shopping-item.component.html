@@ -1,0 +1,26 @@
+<mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header class="container">
+      <mat-panel-title class="title-fixed-width">
+        {{book.volumeInfo.title| truncate:20}}
+      </mat-panel-title>
+      <mat-panel-description >
+        <br>
+        <div class="title">{{price}}</div>
+
+        <div class="quantity-counter title">
+            <button (click)="decrement($event, price, book.id)" class="button-shopping-cart">-</button>
+            <span class="quantity-number">{{ quantity }}</span>
+            <button (click)="increment($event, price, book.id)" class="button-shopping-cart">+</button>
+          </div>
+          
+        <div class="title">{{quantity == 1 ? price : totalPricePerBook}}</div>
+
+        <button class="title remove-icon" (click)="removeBookFunction($event, book.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-panel-description>
+      
+    </mat-expansion-panel-header>
+    <p>Full title: {{book.volumeInfo.title}}</p>
+    <p>Published Date: {{book.volumeInfo.publishedDate}}</p>
+  </mat-expansion-panel>

@@ -1,0 +1,52 @@
+<mat-expansion-panel hideToggle>
+  <mat-expansion-panel-header class="container" *ngIf="user">
+    <mat-panel-title class="title-fixed-width">
+      <div (click)="onContainerClick($event)">
+        <b
+          *ngIf="!isEditingEmail; else editEmailTemplate"
+          (click)="enableEmailEdit()"
+          >{{ user.email }}</b
+        >
+        <ng-template #editEmailTemplate>
+          <input
+            type="text"
+            [(ngModel)]="updatedEmail"
+            (blur)="disableEmailEdit($event)"
+            (keydown.enter)="disableEmailEdit($event)"
+            (keyup.enter)="updateEmail()"
+            clickOutside (clickOutside) = "disableEmailEdit($event)"
+            placeholder="{{ user.email }}"
+          />
+        </ng-template>
+      </div>
+    </mat-panel-title>
+
+    <mat-panel-description>
+      <br />
+
+      <button class="title remove-icon" (click)="removeUser($event)" *ngIf="loggedInUser?.isSuperAdmin">
+        <mat-icon>delete</mat-icon>
+      </button>
+
+      <button class="title remove-icon" *ngIf="loggedInUser?.isSuperAdmin" (click)="addAdminRole($event)" matTooltip="{{ user.isAdmin ? 'User has an admin role' : 'User does not have admin role' }}">
+        <mat-icon>{{  user.isAdmin ? 'person' : 'person_outline'}}</mat-icon>
+      </button>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <table>
+    <tbody *ngIf="user">
+      <tr>
+        <th class="title-column">ID</th>
+        <td>{{ user.id }}</td>
+      </tr>
+      <tr>
+        <th class="title-column">CreationTime:</th>
+        <td>{{ user.creationTime }}</td>
+      </tr>
+      <tr>
+        <th class="title-column">CreationTime:</th>
+        <td>{{ user.creationTime }}</td>
+      </tr>
+    </tbody>
+  </table>
+</mat-expansion-panel>

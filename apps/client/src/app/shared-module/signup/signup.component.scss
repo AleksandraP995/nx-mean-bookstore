@@ -1,0 +1,26 @@
+@import "../../../sass/colors";
+@import '../../../sass/styles';
+
+mat-card {
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  mat-form-field {
+    display: block;
+    margin-bottom: 2em;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    height: 100vh; 
+  }
+  
+  .signup-link {
+    text-decoration: underline; 
+    color: $active-tab-color-dark;
+  }
+
+

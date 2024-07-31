@@ -1,0 +1,101 @@
+{
+    "version": 1,
+    "projects": {
+      "client": {
+        "root": "apps/client",
+        "sourceRoot": "apps/client/src",
+        "projectType": "application",
+        "prefix": "app",
+        "schematics": {},
+        "architect": {
+          "build": {
+            "builder": "@angular-devkit/build-angular:browser",
+            "options": {
+              "outputPath": "dist/apps/client",
+              "index": "apps/client/src/index.html",
+              "main": "apps/client/src/main.ts",
+              "polyfills": "apps/client/src/polyfills.ts",
+              "tsConfig": "apps/client/tsconfig.app.json",
+              "assets": ["apps/client/src/favicon.ico", "apps/client/src/assets"],
+              "styles": ["apps/client/src/styles.css"],
+              "scripts": []
+            },
+            "configurations": {
+              "production": {
+                "fileReplacements": [
+                  {
+                    "replace": "apps/client/src/environments/environment.ts",
+                    "with": "apps/client/src/environments/environment.prod.ts"
+                  }
+                ],
+                "optimization": true,
+                "outputHashing": "all",
+                "sourceMap": false,
+                "namedChunks": false,
+                "aot": true,
+                "extractLicenses": true,
+                "vendorChunk": false,
+                "buildOptimizer": true,
+                "budgets": [
+                  {
+                    "type": "initial",
+                    "maximumWarning": "2mb",
+                    "maximumError": "5mb"
+                  }
+                ]
+              }
+            }
+          },
+          "serve": {
+            "builder": "@angular-devkit/build-angular:dev-server",
+            "options": {
+              "browserTarget": "client:build"
+            },
+            "configurations": {
+              "production": {
+                "browserTarget": "client:build:production"
+              }
+            }
+          }
+        }
+      },
+      "server": {
+        "root": "apps/server",
+        "sourceRoot": "apps/server/src",
+        "projectType": "application",
+        "schematics": {},
+        "architect": {
+          "build": {
+            "builder": "@nrwl/node:build",
+            "options": {
+              "outputPath": "dist/apps/server",
+              "main": "apps/server/src/server.ts",
+              "tsConfig": "apps/server/tsconfig.app.json",
+              "assets": [
+                "apps/server/src/config/serviceAccountKey.json"
+              ]
+            },
+            "configurations": {
+              "production": {
+                "optimization": true
+              }
+            }
+          },
+          "serve": {
+            "builder": "@nrwl/node:execute",
+            "options": {
+              "buildTarget": "server:build",
+              "port": 3000
+            },
+            "configurations": {
+              "production": {
+                "buildTarget": "server:build:production"
+              }
+            }
+          }
+        }
+      }
+    },
+    "defaultProject": "client"
+  }
+  

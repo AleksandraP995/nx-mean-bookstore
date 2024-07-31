@@ -1,0 +1,29 @@
+.dialog-container {
+    display: flex;
+    flex-direction: column;
+    margin-right: .3em;
+  }
+  
+  .right-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto; /* Push to the right side */
+  }
+  
+  .discount-container,
+  .price-container,
+  .total-price-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .discount-container label,
+  .price-container label,
+  .total-price-container label {
+    margin-right: 50px;
+  }
+  
+  .dashed-line {
+    color: grey;
+  }

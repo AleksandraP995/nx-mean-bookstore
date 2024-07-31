@@ -1,0 +1,26 @@
+body,
+html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  font-family: "Roboto Mono", monospace;
+  justify-content: center;
+  align-items: center;
+}
+
+.panel {
+  height: 100%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+.column {
+  flex: 1;
+  height: 100%;
+}
+

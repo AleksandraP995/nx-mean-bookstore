@@ -1,0 +1,33 @@
+
+
+  
+  <div *ngIf="dataToPass.shoppingList.length > 0; else emptyCart">
+    <mat-stepper linear>
+        <mat-step label="Shopping cart">
+          <app-shopping-list [shoppingList]="dataToPass.shoppingList"></app-shopping-list>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+        <mat-step label="Shipping">
+           <app-shipping></app-shipping>
+            <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+            </div>
+          </mat-step>
+        <mat-step label="Billing">
+          Hello
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+    </mat-stepper>
+  </div>
+
+  <ng-template #emptyCart>
+    <div class="empty-cart-msg">
+      Your shopping cart is empty, select some books to continue with shopping
+    </div>
+  </ng-template>

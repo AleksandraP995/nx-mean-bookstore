@@ -1,0 +1,30 @@
+@import '../../../sass/colors';
+@import '../../../sass/styles.scss';
+
+.book-segment {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    max-width: 60vw; 
+    background-color: $book-segment-bckg-color;
+    color: white;
+  }
+  
+  .letters-info {
+    color: $letters-info-color;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .book-segment {
+      padding: 15px; 
+      font-size: 14px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .book-segment {
+      max-width: 90vw; 
+      font-size: 12px; 
+    }
+  }
+  

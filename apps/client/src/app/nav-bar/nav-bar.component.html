@@ -1,0 +1,73 @@
+<div class="header">
+  <div class="spacer"></div>
+  <div class="spacer"></div>
+  <div class="search-bar">
+    <input
+      type="text"
+      [formControl]="query"
+      placeholder="Search"
+      class="navbar"
+    />
+  </div>
+  <div class="favorites-icon-container">
+    <mat-icon *ngIf="isAdminLoggedIn" (click)="navigateToUsers()">person</mat-icon>
+    <button
+      mat-icon-button
+      (click)="navigateToFavorites()"
+      class="button-favorites"
+    >
+      <mat-icon
+        class="favroites-icon"
+        [ngClass]="{
+          'has-favorites': favoritesService.favoritesList.length > 0
+        }"
+        >{{
+          favoritesService.favoritesList.length > 0
+            ? "favorite"
+            : "favorite_border"
+        }}</mat-icon
+      >
+    </button>
+    <span class="badge" *ngIf="favoritesService.favoritesList.length > 0">{{
+      favoritesService.favoritesList.length
+    }}</span>
+  </div>
+
+  <div class="favorites-icon-container shopping-cart">
+    <button
+      mat-icon-button
+      (click)="openShoppingDialog()"
+      class="button-favorites"
+      [disabled]="!isAuthenticated"
+      [matTooltip]="!isAuthenticated ? 'First sign in/up to continue with shopping' : 'Let\'s start with shopping'"
+    >
+      <mat-icon
+        class="mat-icon-custom"
+        [ngClass]="{ 'has-favorites': this.shoppingList.length > 0 }"
+        
+        >add_shopping_cart</mat-icon
+      >
+    </button>
+    <span class="badge" *ngIf="this.shoppingList.length > 0">{{
+      this.shoppingList.length
+    }}</span>
+  </div>
+
+  <div class="profile-icon">
+    <div class="circle">
+      <ng-container *ngIf="!isAuthenticated; else usernameDisplay">
+        <mat-icon matTooltip="Jump to log in page" (click) = navigateToLogin()>person_outline</mat-icon>
+      </ng-container>
+
+      <ng-template #usernameDisplay>
+        <div class="text" (click)="openUserPopup()">
+          {{ firstLetter }}
+        </div>
+      </ng-template>
+      <app-user-profile-popup *ngIf="showUserPopup"></app-user-profile-popup>
+      
+    </div>
+  </div>
+</div>
+
+

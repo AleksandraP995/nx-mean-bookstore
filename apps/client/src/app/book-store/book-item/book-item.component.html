@@ -1,0 +1,34 @@
+<div
+  class="book-card"
+  (mouseenter)="showIcons = true"
+  (mouseleave)="showIcons = false"
+  (click)="checkIfInFavorites(book)"
+>
+  <img
+    src="{{ book.volumeInfo?.imageLinks?.smallThumbnail }}"
+    class="img-fluid"
+    alt="{{ book.volumeInfo.title }}"
+  />
+  <div class="icons" *ngIf="showIcons">
+    <mat-icon (click)="toggleFavorite(book)">
+      {{
+        favoritesList.length == 0
+          ? "favorite_border"
+          : checkIfInFavorites(book)
+          ? "favorite"
+          : "favorite_border"
+      }}
+    </mat-icon>
+    <mat-icon
+      (click)="addBookToShoppingCart()"
+      class="mat-icon-custom"
+      >add_shopping_cart</mat-icon
+    >
+  </div>
+  <div class="additional-info" (click)="openDialog()">
+    <p class="book-title">{{ book.volumeInfo.title }}</p>
+    <p class="book-description">
+      <i>{{ author }}</i>
+    </p>
+  </div>
+</div>

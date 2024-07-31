@@ -1,0 +1,46 @@
+@import '../../sass/colors';
+
+.ul {
+    padding-top: 3em;
+}
+.flex-column {
+    padding-left: 2em;
+}
+.nav .nav-item .nav-link {
+    color: $nav-link; 
+    font-weight: bold;
+  }
+
+  .tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-right: 1px solid $navbar-border;
+    font-weight: 600;
+  }
+  
+  .tab:last-child {
+    border-right: none;
+  }
+  
+  .tab.active {
+    background-color:$active-tab-color;
+  }
+
+  @media screen and (max-width: 768px) {
+    .tab {
+      width: calc(33.333% - 10px);
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .tab {
+      width: calc(50% - 10px); 
+    }
+  }
+  

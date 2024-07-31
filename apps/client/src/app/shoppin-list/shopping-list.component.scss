@@ -1,0 +1,13 @@
+@import"../../sass/colors";
+
+.total-price-container {
+    display: flex
+}
+
+.panel {
+    flex:1;
+}
+.info-message{
+    font-size: 10px;
+    color: $active-tab-color;
+}

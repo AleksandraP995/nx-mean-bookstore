@@ -1,0 +1,19 @@
+<br>
+<div *ngFor="let book of shoppingList">
+    <app-shopping-item
+      [book] = "book"
+    ></app-shopping-item>
+</div>
+<br>
+<div class="total-price-container">
+  <div class="panel">
+    <app-discount-code-form ></app-discount-code-form>
+    <div class="info-message" *ngIf="discountApplied"><i>Discount of {{discountPercentage}}% is applied!</i></div>    
+  </div>
+  <div class="panel">
+    <app-total-price-panel></app-total-price-panel>
+  </div>
+
+</div>
+
+

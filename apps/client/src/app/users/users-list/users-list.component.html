@@ -1,0 +1,39 @@
+<div *ngIf="isLoading == false; else showLoader">
+  <h5>Users</h5>
+  <div>Current user: {{ loggedInUser?.username }}</div>
+  <div *ngIf="users.length > 0; else noUsers">
+    <ol>
+      <li *ngFor="let user of users">
+        <app-user-card [user]="user"></app-user-card>
+      </li>
+    </ol>
+  </div>
+
+
+  <div *ngIf="fileUploadForm">
+    <form [formGroup]="fileUploadForm" (ngSubmit)="onSubmit()" novalidate>
+      <div>
+        <button mat-stroked-button type="button" (click)="filePicker.click()">Pick New File</button>
+        <input id="file" type="file" #filePicker (change)="onFileSelected($event)" required>
+      </div>
+      <div class = "error-msg" *ngIf="file?.invalid ">Invalid file type.</div>
+    </form>  
+    <div class="img-preview" *ngIf="imagePreview && file?.valid">
+      <img [src]="imagePreview" alt="Image Preview" />
+    </div>
+  </div>
+
+  <button mat-stroked-button (click)="openDialog()">Add new user</button>
+  <ng-template appPlaceholder=""></ng-template>
+  <ng-template #noUsers>
+    <div class="empty-cart-msg">No users to diplay, please add some</div>
+  </ng-template>
+</div>
+<ng-template #showLoader>
+  <div class="loading-spinner">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+</ng-template>
+
+
+

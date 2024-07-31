@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Full Screen Cover Image</title>
+    <link rel="stylesheet" href="book-store.component.scss" />
+  </head>
+  <body>
+    <div class="cover-container">
+      <div class="cover-image">
+        <div class="description-overlay">
+          <app-nav-bar></app-nav-bar>
+          <app-banner-book></app-banner-book>
+        </div>
+      </div>
+    </div>
+    <app-header (linkNameChanged)="onLinkNameChanged($event)"></app-header>
+    <div class="navigation-bar">
+      <pagination-controls
+        class="pagination"
+        (pageChange)="pageChanged($event)"
+        previousLabel="Prev"
+        nextLabel="Next"
+        (responsive)="(true)"
+      ></pagination-controls>
+    </div>
+    
+    <div class="books-list" *ngIf = 'bookStoreService.booksObservable$ | async as books'>
+      <div
+        
+        *ngFor="
+          let book of books
+            | paginate
+              : {
+                  itemsPerPage: maxResult,
+                  currentPage: currentPage,
+                  totalItems: totalItems
+                }
+        "
+        class="item"
+      >
+        <app-book-item [book]="book"></app-book-item>
+      </div>
+    </div>
+  </body>
+</html>
+

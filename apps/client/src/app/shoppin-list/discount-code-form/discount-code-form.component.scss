@@ -1,0 +1,28 @@
+@import '../../../sass/colors';
+@import '../../../sass/styles.scss';
+.input-field {
+    display: none;
+  }
+  
+  .input-field.show {
+    display: block;
+  }
+  
+  button.expanded {
+    width: auto;
+    border: none;
+    background-color: transparent;
+  }
+
+  .bla {
+    background-color: transparent;
+  }
+  .button-shopping-cart {
+    @include button-light;
+    margin-left: .5em;
+    padding: 7px;
+  }
+  ::ng-deep.mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: rgba(0,0,0,.01);
+    box-shadow: 1px black;
+}
