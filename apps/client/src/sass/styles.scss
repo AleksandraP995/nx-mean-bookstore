@@ -1,5 +1,7 @@
 @import "colors";
 @import "dialog_values";
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
 :root {
   --book-item-dialog-width: #{$book-item-dialog-width};
   --book-item-dialog-height: #{$book-item-dialog-height};

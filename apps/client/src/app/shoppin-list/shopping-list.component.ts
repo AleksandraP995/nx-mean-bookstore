@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { discountsList } from '../../shared/shopping-list-enums';
-import { ShoppingCartService } from '../../services/shopping-cart-service/shopping-cart.service';
+import { discountsList } from '../../models/shoppingListEnums';
+import { ShoppingCartService } from '../../services/shoppingCartService/shopping-cart.service';
 import { BookItem } from '../../models/bookItem/bookItem';
 
 @Component({

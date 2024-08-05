@@ -14,18 +14,10 @@ const router = express.Router();
 // retrieve all users from firebase users
 router.get('/users', async (req: Request, res: Response) => {
   try {
-    // Access custom headers - vezba
-    // console.log('Custom Header: ', req.get('Custom-Header'));
-    // console.log('Print Param: ', req.query.print);
-    // console.log('Custom Param: ', req.query.custom);
-
-    // Fetch user list
     const userList = await admin.auth().listUsers();
     const users = userList.users;
 
-    // Process users
     const usersWithAdminStatus = users.map((userRecord) => {
-      const uid = userRecord.uid;
       const isAdmin = checkAdminClaims(userRecord.customClaims);
       const isSuperAdmin = checkSuperAdminClaims(userRecord.customClaims);
       const {
@@ -63,7 +55,6 @@ router.post('/add-user', async (req: Request, res: Response) => {
 
     const userRecord = await admin.auth().createUser({ email, password });
 
-    // Set admin and super admin claims
     const updatedUserRecord = await setUserClaims(email);
 
     const isAdmin = checkAdminClaims(updatedUserRecord.customClaims);

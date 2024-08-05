@@ -3,7 +3,8 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/server/src",
   "projectType": "application",
-  "tags": [],
+  "tags": ["scope: libs/app-configuration"],
+  "implicitDependencies": ["libs/app-configuration"],
   "targets": {
     "build": {
       "executor": "@nx/esbuild:esbuild",

@@ -3,11 +3,11 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { BookstoreUser } from '../../../models/user';
-import { AuthService } from '../../../services/auth-service/auth.service';
+import { AuthService } from '../../../services/authService/auth.service';
 import { loginForm, loginFormFields } from '../../formValidations/forms';
 import { Fields, ValidationErrors } from '../../../app/formValidations/enums';
-import { UserCredentials } from '../../../app/users/user-enums';
-import { NotificationManagerService } from '../../../services/notification-manager/notification-manager.service';
+import { UserCredentials } from '../../users/userEnums';
+import { NotificationManagerService } from '../../../services/notificationManager/notification-manager.service';
 import { extractUserCredentials, handleError } from '../utils';
 import { trackStatusChanges } from '../../formValidations/utils';
 

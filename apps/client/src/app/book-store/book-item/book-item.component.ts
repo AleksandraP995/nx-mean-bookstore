@@ -1,14 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { bookForDisplay } from '../../../models/bookItem/bookItem';
 import { MatDialog } from '@angular/material/dialog';
-import { BookDetailsDialogComponent } from './book-details-dialog/book-details-dialog.component';
-import { ShoppingCartService } from '../../../services/shopping-cart-service/shopping-cart.service';
-import { FavoritesListService } from '../../../services/favorites-list-service/favorites-list.service';
+import { BookDetailsDialogComponent } from './bookDetailsDialog/book-details-dialog.component';
+import { ShoppingCartService } from '../../../services/shoppingCartService/shopping-cart.service';
+import { FavoritesListService } from '../../../services/favoritesListService/favorites-list.service';
 import { getCssCustomProperty } from '../../../shared/utils';
 import { BookItem } from '../../../models/bookItem/bookItem';
 import { BookstoreUser } from '../../../models/user';
 import { Subscription } from 'rxjs';
-import { AuthService } from '../../../services/auth-service/auth.service';
+import { AuthService } from '../../../services/authService/auth.service';
 
 @Component({
   selector: 'app-book-item',
@@ -46,7 +46,6 @@ export class BookItemComponent implements OnInit {
   }
 
   toggleFavorite(book: BookItem) {
-    debugger;
     this.favoritesService.toggleFavorite(book, this.currentUser);
   }
 
@@ -70,7 +69,6 @@ export class BookItemComponent implements OnInit {
   }
 
   addBookToShoppingCart() {
-    debugger
     this.shoppingService.toggleShoppingList(this.book, this.currentUser)
   }
 }

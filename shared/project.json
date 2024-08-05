@@ -1,9 +1,26 @@
 {
   "name": "shared",
   "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "root": "shared",
   "sourceRoot": "shared/src",
+  "prefix": "shared",
   "projectType": "library",
   "tags": [],
   "// targets": "to see all targets run: nx show project lib --web",
-  "targets": {}
+  "targets": {},
+  "architect": {
+      "build": {
+        "builder": "@nrwl/js:tsc",
+        "options": {
+          "outputPath": "dist/shared",
+          "tsConfig": "shared/tsconfig.lib.json",
+          "project": "shared/tsconfig.lib.json"
+        },
+        "configurations": {
+          "production": {
+            "optimization": true
+          }
+      }
+    }
+  }
 }

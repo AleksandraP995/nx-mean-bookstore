@@ -1,19 +1,18 @@
 {
   "extends": "../../tsconfig.base.json",
   "files": [],
-  "include": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json",
-      "composite": true
-    },
-    {
-      "path": "./tsconfig.spec.json",
-      "composite": true
-    }
-  ],
+  "include": ["**/*.ts"],
+  "references": [],
   "compilerOptions": {
     "esModuleInterop": true,
     "resolveJsonModule": true,
-  }
+    "paths": {
+        "@org-bookstore/app-configuration": [
+          "../../libs/app-configuration/src/index.ts"
+        ],
+        "@org-bookstore/interfaces/*": [
+        "../../libs/app-configuration/src/*"
+      ]
+    },
+  },
 }

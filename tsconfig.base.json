@@ -15,7 +15,12 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@shared": ["shared/src/index.ts"]
+      "@org-bookstore/app-configuration": [
+        "libs/app-configuration/src/index.ts"
+      ],
+      "@org-bookstore/interfaces/*": [
+        "libs/app-configuration/src/*"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

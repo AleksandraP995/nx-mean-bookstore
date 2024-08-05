@@ -19,7 +19,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { AuthInterceptorService } from './authentication/interceptors/auth-interceptor.service';
-import { PlaceHolderDirective } from './users/hello-component/placeholder-directive';
+import { PlaceHolderDirective } from './users/helloComponent/placeholder-directive';
 import { ShoppingListModule } from '../app/shoppin-list/shopping-list.module';
 import { SharedModule } from './shared-module/shared.module';
 import { FavoritesModule } from './favorites/favorites.module';
@@ -54,7 +54,8 @@ import { CoreModule } from './core.module';
     ShoppingListModule,
     BookStoreModule,
     UsersModule,
-    CoreModule
+    CoreModule,
+    BrowserAnimationsModule
   ],
   exports: [MatFormFieldModule, ShoppingListModule],
   providers: [

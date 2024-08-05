@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { AuthService } from '../services/auth-service/auth.service';
+import { AuthService } from '../services/authService/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,6 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    // debugger
     this.authService.autoLogin();
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {

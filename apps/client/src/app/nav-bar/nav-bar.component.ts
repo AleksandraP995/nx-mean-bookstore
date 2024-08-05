@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { BookStoreService } from '../../services/book-store-service/book-store.service';
+import { BookStoreService } from '../../services/bookStoreService/book-store.service';
 import { FormControl } from '@angular/forms';
 import {
   catchError,
   debounceTime,
   distinctUntilChanged,
 } from 'rxjs/operators';
-import { Common } from '../../shared/shopping-list-enums';
+import { BookQueryParams } from '../../models/shoppingListEnums';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { ShoppingStepperComponent } from '../shoppin-list/shopping-stepper/shopping-stepper.component';
-import { ShoppingCartService } from '../../services/shopping-cart-service/shopping-cart.service';
-import { FavoritesListService } from '../../services/favorites-list-service/favorites-list.service';
-import { AuthService } from '../../services/auth-service/auth.service';
+import { ShoppingStepperComponent } from '../shoppin-list/shoppingStepper/shopping-stepper.component';
+import { ShoppingCartService } from '../../services/shoppingCartService/shopping-cart.service';
+import { FavoritesListService } from '../../services/favoritesListService/favorites-list.service';
+import { AuthService } from '../../services/authService/auth.service';
 import { BookstoreUser } from '../../models/user';
 import { getCssCustomProperty } from '../../shared/utils';
-import { NotificationManagerService } from '../../services/notification-manager/notification-manager.service';
+import { NotificationManagerService } from '../../services/notificationManager/notification-manager.service';
 import { ShoppingDialogData } from '../../models/shoppingCart/shoppingDialogData';
 import { Subscription } from 'rxjs';
 import { BookItem } from '../../models/bookItem/bookItem';
@@ -116,8 +116,8 @@ export class NavBarComponent implements OnInit {
       .subscribe((query: string) => {
         console.log('Query: ' + query);
         const trimmedQuery =
-          query == '' ? Common.defaultQueryValue : query.trim();
-        this.bookStoreService.searchBooks(trimmedQuery, Common.maxResult, 1);
+          query == '' ? BookQueryParams.defaultQueryValue : query.trim();
+        this.bookStoreService.searchBooks(trimmedQuery, BookQueryParams.maxResult, 1);
       });
   }
 

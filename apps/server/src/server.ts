@@ -53,7 +53,7 @@ connectDB()
   });
 
 
-// sad je odvojenom folderu postgre
+// sad je odvojenom folderu postgre, ne mongodb
 // mongoose.connect('mongodb://localhost:27017/bookstoreDB', {
 // }).then(() => {
 //   console.log('Connected to MongoDB');

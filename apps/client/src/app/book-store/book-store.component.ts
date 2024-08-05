@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { BookStoreService } from '../../services/book-store-service/book-store.service';
-import { Common } from '../../shared/shopping-list-enums';
+import { BookStoreService } from '../../services/bookStoreService/book-store.service';
+import { BookQueryParams } from '../../models/shoppingListEnums';
 import { Subscription } from 'rxjs';
 import { BookstoreUser } from '../../models/user';
-import { AuthService } from '../../services/auth-service/auth.service';
+import { AuthService } from '../../services/authService/auth.service';
 
 @Component({
   selector: 'app-book-store',
@@ -12,8 +12,8 @@ import { AuthService } from '../../services/auth-service/auth.service';
 })
 export class BookStoreComponent implements OnInit {
   query: string = 'all';
-  maxResult: number = Common.maxResult;
-  startIndex: number = Common.startIndex;
+  maxResult: number = BookQueryParams.maxResult;
+  startIndex: number = BookQueryParams.startIndex;
   currentPage = 1;
   totalItems: number = 500;
   newUser: BookstoreUser | null = null;
@@ -44,7 +44,7 @@ export class BookStoreComponent implements OnInit {
     // this.query == '' && (this.query = 'all');
     this.bookStoreService.searchBooks(
       this.query,
-      Common.maxResult,
+      BookQueryParams.maxResult,
       this.currentPage
     );
   }
@@ -52,7 +52,7 @@ export class BookStoreComponent implements OnInit {
   onLinkNameChanged(newLinkName: string) {
     this.bookStoreService.searchBooks(
       newLinkName,
-      Common.maxResult,
+      BookQueryParams.maxResult,
       this.currentPage
     );
   }

@@ -45,9 +45,23 @@
       }
     },
     "server": {
-      "cache": true
+      "cache": true,
+      "implicitDependencies": ["shared"]
     },
     "@nx/esbuild:esbuild": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    },
+    "targetDefaults": {
+      "build": {
+        "dependsOn": ["^build"],
+        "options": {
+          "cache": false
+        }
+      }
+    },
+    "@nx/js:tsc": {
       "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]

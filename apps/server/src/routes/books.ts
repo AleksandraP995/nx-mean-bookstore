@@ -1,6 +1,7 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import client from '../postgre/postgreClient';
-import { AddBookToFavoritesObject } from '../../models/httpResponse';
+import { AddBookToFavoritesObject } from '../../../../libs/app-configuration/src/interfaces/addBookToFavorites.interface';
+// import { AddBookToFavoritesObject } from '@org-bookstore/interfaces/lib/app-configuration';
 
 const router = express.Router();
 

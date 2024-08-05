@@ -3,20 +3,20 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { BookstoreUser } from '../../../models/user';
-import { AuthService } from '../../../services/auth-service/auth.service';
+import { AuthService } from '../../../services/authService/auth.service';
 import { CustomValidators } from '../../formValidations/customValidators';
-import { UsersService } from '../../../services/users-service/users.service';
+import { UsersService } from '../../../services/usersService/users.service';
 import {
   Fields,
   SubmitType,
   ValidationErrors,
 } from '../../formValidations/enums';
 import { signupFormFields, signupForm } from '../../formValidations/forms';
-import { UserCredentials } from '../../users/user-enums';
-import { NotificationManagerService } from '../../../services/notification-manager/notification-manager.service';
+import { UserCredentials } from '../../users/userEnums';
+import { NotificationManagerService } from '../../../services/notificationManager/notification-manager.service';
 import { extractUserCredentials, handleError } from '../utils';
 import { MatDialogRef } from '@angular/material/dialog';
-import { NewUserDialogComponent } from '../../users/users-list/new-user-dialog/new-user-dialog.component';
+import { NewUserDialogComponent } from '../../users/users-list/newUserDialog/new-user-dialog.component';
 import { trackStatusChanges } from '../../formValidations/utils';
 
 @Component({
@@ -129,7 +129,6 @@ export class SignupComponent implements OnInit {
         this.notificationManager.openSnackBar(
           `New user ${userCredentials.username} added`
         );
-        // debugger
         this.router.navigate(['bookstore']);
       },
       error: (err) => {

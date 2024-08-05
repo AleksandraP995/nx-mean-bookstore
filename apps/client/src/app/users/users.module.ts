@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HelloComponentComponent } from './hello-component/hello-component.component';
-import { NewUserDialogComponent } from './users-list/new-user-dialog/new-user-dialog.component';
-import { RemoveDialogComponent } from './users-list/remove-user-dialog/remove-dialog.component';
+import { HelloComponentComponent } from './helloComponent/hello-component.component';
+import { NewUserDialogComponent } from './users-list/newUserDialog/new-user-dialog.component';
+import { RemoveDialogComponent } from './users-list/removeUserDialog/remove-dialog.component';
 import { SharedModule } from '../shared-module/shared.module';
-import { UserCardComponent } from './users-list/user-card/user-card.component';
+import { UserCardComponent } from './users-list/userCard/user-card.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';

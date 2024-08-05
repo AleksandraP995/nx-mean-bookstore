@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BannerBookComponent } from './banner-book/banner-book.component';
+import { BannerBookComponent } from './bannerBook/banner-book.component';
 import { BookItemComponent } from './book-item/book-item.component';
 import { BookStoreComponent } from './book-store.component';
-import { BookDetailsDialogComponent } from './book-item/book-details-dialog/book-details-dialog.component';
+import { BookDetailsDialogComponent } from './book-item/bookDetailsDialog/book-details-dialog.component';
 import { BookStoreRoutingModule } from './book-store-routing.module';
 import { RouterModule } from '@angular/router';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';

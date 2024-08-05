@@ -1,16 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UsersService } from '../../../services/users-service/users.service';
+import { UsersService } from '../../../services/usersService/users.service';
 import { MatDialog } from '@angular/material/dialog';
-import { NewUserDialogComponent } from './new-user-dialog/new-user-dialog.component';
-import { PlaceHolderDirective } from '../hello-component/placeholder-directive';
+import { NewUserDialogComponent } from './newUserDialog/new-user-dialog.component';
+import { PlaceHolderDirective } from '../helloComponent/placeholder-directive';
 import { getCssCustomProperty } from '../../../shared/utils';
 import { signupForm } from '../../formValidations/forms';
-import { AuthService } from '../../../services/auth-service/auth.service';
+import { AuthService } from '../../../services/authService/auth.service';
 import { BookstoreUser } from '../../../models/user';
 import { Subscription } from 'rxjs';
 import { CustomValidators } from '../../formValidations/customValidators';
-import { NotificationManagerService } from '../../../services/notification-manager/notification-manager.service';
+import { NotificationManagerService } from '../../../services/notificationManager/notification-manager.service';
 
 @Component({
   selector: 'app-users-list',
@@ -89,7 +89,6 @@ export class UsersListComponent implements OnInit {
 
   // ne radi nista
   onSubmit() {
-    debugger
     if (this.fileUploadForm?.invalid) {
       this.notificationManager.openSnackBar(`Invalid file type`);
       console.log('wrong')
@@ -102,7 +101,6 @@ export class UsersListComponent implements OnInit {
   }
 
   onFileSelected(event: Event): void {
-    debugger;
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files && inputElement.files.length > 0) {
       this.fileUploadForm!.patchValue({ file: inputElement.files[0] });

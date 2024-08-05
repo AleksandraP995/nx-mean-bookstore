@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TruncatePipe } from '../shared-module/truncate.pipe';
-import { ClickOutsideDirective } from './click-outside.directive';
+import { ClickOutsideDirective } from './clickOutside.directive';
 import { SignupComponent } from './signup/signup.component';
-import { LoadingSpinnerComponent } from '../shared-module/loading-spinner/loading-spinner.component';
+import { LoadingSpinnerComponent } from './loadingSpinner/loading-spinner.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -56,6 +56,7 @@ import { SharedRoutingModule } from './shared.routing.module';
     SignupComponent,
     LoginComponent,
     LoadingSpinnerComponent,
+    MatCardModule
   ]
 })
 export class SharedModule {}

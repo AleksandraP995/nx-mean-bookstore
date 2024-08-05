@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 import { FormGroup } from '@angular/forms';
 import { errorMessages } from './errorMessages';
 import { Subject } from 'rxjs';

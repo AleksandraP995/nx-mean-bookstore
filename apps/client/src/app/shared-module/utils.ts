@@ -1,6 +1,6 @@
-import { NotificationManagerService } from '../../services/notification-manager/notification-manager.service';
+import { NotificationManagerService } from '../../services/notificationManager/notification-manager.service';
 import { ValidationErrors } from '../formValidations/enums';
-import { UserCredentials } from '../users/user-enums';
+import { UserCredentials } from '../users/userEnums';
 import { FormControl } from '@angular/forms';
 
 export function extractFormErrors(formData: any) {

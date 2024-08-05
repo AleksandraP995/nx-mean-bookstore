@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ShoppingListComponent } from './shopping-list.component';
-import { ShoppingItemComponent } from './shopping-item/shopping-item.component';
+import { ShoppingItemComponent } from './shoppingItem/shopping-item.component';
 import { ShippingComponent } from './shipping/shipping.component';
-import { DiscountCodeFormComponent } from './discount-code-form/discount-code-form.component';
-import { TotalPricePanelComponent } from './total-price-panel/total-price-panel.component';
-import { ShoppingStepperComponent } from './shopping-stepper/shopping-stepper.component';
+import { DiscountCodeFormComponent } from './discountCodeForm/discount-code-form.component';
+import { TotalPricePanelComponent } from './totalPricePanel/total-price-panel.component';
+import { ShoppingStepperComponent } from './shoppingStepper/shopping-stepper.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
