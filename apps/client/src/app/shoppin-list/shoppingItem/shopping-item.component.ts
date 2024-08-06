@@ -1,8 +1,13 @@
+/* eslint-disable no-debugger */
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { finalize, Subscription } from 'rxjs';
 import { bookForDisplay, BookItem } from '../../../models/bookItem/bookItem';
 import { ShoppingCartService } from '../../../services/shoppingCartService/shopping-cart.service';
 import { TotalPricePerBook } from '../../../models/shoppingCart/shoppingState';
+import { NotificationManagerService } from '../../..//services/notificationManager/notification-manager.service';
+import { PdfService } from '../../../services/pdfGenerator/pdf.service';
+import { AuthService } from '../../../services/authService/auth.service';
+import { WebSocketMessage } from '../../../models/webSocketMessages';
 
 @Component({
   selector: 'app-shopping-item',
@@ -19,9 +24,18 @@ export class ShoppingItemComponent implements OnInit {
   isInitialized: boolean = false;
   showDeleteButton: boolean = false;
 
+  text: string = '';
+  progress: number = 0;
+
+  userId: string = '';
+  userSubscription = new Subscription();
+
   constructor(
     private cdref: ChangeDetectorRef,
-    private shoppingService: ShoppingCartService
+    private shoppingService: ShoppingCartService,
+    private authService: AuthService,
+    private pdfService: PdfService,
+    private notificationManager: NotificationManagerService
   ) {}
 
   ngOnInit(): void {
@@ -43,10 +57,31 @@ export class ShoppingItemComponent implements OnInit {
       bookPrice: this.totalPricePerBook
     }
     this.shoppingService.setTotalPrice(bookDetails);
+    this.userSubscription = this.authService.userObservable$.subscribe(
+      (user) => {
+        this.userId = user ? user.id : '';
+      }
+    );
   }
 
   ngAfterContentChecked() {
     this.cdref.detectChanges();
+  }
+
+  createPdf() {
+    this.pdfService.createPdf(this.text, this.userId).pipe(finalize(() => this.notificationManager.openSnackBar('PDF Created'))).subscribe({
+      next: () => {
+        this.pdfService.connectWebSocket(this.userId).subscribe({
+          next: (message: WebSocketMessage) => {
+            console.log('Websocket message received ' + message)
+          },
+          error: (err) => console.error(err)
+        })
+      },
+      error: (err) => console.error(err)
+    });
+
+    this.pdfService.getProgress().subscribe(progress => this.progress = progress);
   }
 
   randomPrice(): number {

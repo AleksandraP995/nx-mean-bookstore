@@ -84,10 +84,8 @@ export class LoginComponent implements OnInit {
       );
       this.authService.authenticate(userCredentials).subscribe({
         next: token => {
-          // debugger
           this.authService.verifyToken(token).subscribe({
             next: response => {
-              // debugger
               const newUser: BookstoreUser = {
                 username: userCredentials.username,
                 ...response

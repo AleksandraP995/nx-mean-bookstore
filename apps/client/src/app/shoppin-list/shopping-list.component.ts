@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 import { Component, Input, OnInit } from '@angular/core';
 import { discountsList } from '../../models/shoppingListEnums';
 import { ShoppingCartService } from '../../services/shoppingCartService/shopping-cart.service';
@@ -22,7 +24,7 @@ export class ShoppingListComponent implements OnInit {
     private shoppingService: ShoppingCartService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   applyDiscount(code: string) {
     if (discountsList.has(code)) {

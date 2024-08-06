@@ -17,7 +17,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { UserCredentials } from '../../app/users/userEnums';
 import { NotificationManagerService } from '../notificationManager/notification-manager.service';
 import { HttpClient } from '@angular/common/http';
-import { CreateNewUserObject } from '../../models/httpResponses';
+import { CreateNewUserObject } from '../../models/userResponses';
 
 @Injectable({
   providedIn: 'root',

@@ -13,14 +13,24 @@
             <button (click)="increment($event, price, book.id)" class="button-shopping-cart">+</button>
           </div>
           
-        <div class="title">{{quantity == 1 ? price : totalPricePerBook}}</div>
+        <div class="title">{{quantity === 1 ? price : totalPricePerBook}}</div>
 
         <button class="title remove-icon" (click)="removeBookFunction($event, book.id)">
           <mat-icon>delete</mat-icon>
         </button>
+        <mat-icon> format_bold</mat-icon>
       </mat-panel-description>
       
     </mat-expansion-panel-header>
     <p>Full title: {{book.volumeInfo.title}}</p>
     <p>Published Date: {{book.volumeInfo.publishedDate}}</p>
+    <div>
+      <h5>Create Personalized Note On a Book</h5>
+      <textarea [(ngModel)]="text" placeholder="Enter text here..."></textarea>
+      <button (click)="createPdf()">Create PDF</button>
+    
+      <div *ngIf="progress > 0">
+        <p>Progress: {{ progress }}%</p>
+      </div>
+    </div>
   </mat-expansion-panel>

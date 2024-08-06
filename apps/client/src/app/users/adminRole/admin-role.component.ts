@@ -25,13 +25,11 @@ export class AdminRoleComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['dataToPass']) {
-      // debugger
       this.updateData(this.dataToPass);
     }
   }
 
   updateData(data: SetAdminClaimsData): void {
-    // debugger
     this.userEmail = data.email;
     this.isAdmin = data.isAdmin;
   }

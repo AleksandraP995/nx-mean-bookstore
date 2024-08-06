@@ -54,7 +54,7 @@ export class ShoppingCartService {
   }
 
   saveBookToDB(bookId: number, userId: number) {
-    return this.http.post('/api/add-book', { bookId, userId });
+    // return this.http.post('/api/add-book', { bookId, userId });
   }
 
   addToShoppingList(item: BookItem, currentUser: BookstoreUser | null) {

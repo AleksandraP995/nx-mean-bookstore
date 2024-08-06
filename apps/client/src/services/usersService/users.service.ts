@@ -10,17 +10,17 @@ import {
   switchMap,
   throwError,
 } from 'rxjs';
-import { GetAllUsersObject } from '../../models/getAllUsersObject';
 import {
   CreateNewUserObject,
   DeleteUserObject,
-  SetAdminClaimsObject,
+  GetAllUsersObject,
   UpdateUserEmailObject,
-} from '../../models/httpResponses';
+} from '../../models/userResponses';
 import { BookstoreUser } from '../../models/user';
 import { UserCredentials } from '../../app/users/userEnums';
 import { environment } from '../../environments/environment';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { SetAdminClaimsObject } from '../../models/setAdminClaimsData';
 
 @Injectable({
   providedIn: 'root',
@@ -39,15 +39,10 @@ export class UsersService {
   ) {}
 
   getAllUsers(): Observable<BookstoreUser[]> {
-    // vezba
-    // const searchParams = new HttpParams()
-    //   .append('print', 'pretty')
-    //   .append('custom', 'key');
 
     return this.http
       .get<GetAllUsersObject>(`${environment.settings.apiUrl}/api/users`, {
         headers: new HttpHeaders({ 'Custom-Header': 'Hello' }),
-        // params: searchParams,
       })
       .pipe(
         map((data) => data['users']),

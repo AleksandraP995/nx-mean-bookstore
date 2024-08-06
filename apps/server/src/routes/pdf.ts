@@ -9,18 +9,14 @@ router.post('/create-pdf', async (req, res) => {
   console.log(text, userId );
   try {
     await generatePDF(text, userId, (progress) => {
-      // Send progress updates to client
       clients.forEach((client) => {
         if (client.readyState === WebSocket.OPEN) {
           client.send(JSON.stringify({ userId, status: 'progress', progress }));
         }
       });
     });
-
-    // If the PDF was generated and saved successfully
-    res.status(200).json({ message: 'PDF generation started' });
+    res.status(200).json({ message: 'PDF generation successful' });
   } catch (error) {
-    // Handle error
     clients.forEach((client) => {
       if (client.readyState === WebSocket.OPEN) {
         client.send(JSON.stringify({ userId, status: 'error', error: error.message }));

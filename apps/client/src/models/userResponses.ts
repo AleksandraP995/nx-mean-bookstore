@@ -12,8 +12,9 @@ export interface DeleteUserObject {
     message: string
 }
 
-export interface SetAdminClaimsObject {
-    message: string
+export interface GetAllUsersObject {
+    message: string,
+    users : BookstoreUser[]
 }
 
 export interface AddBookToFavoritesObject {
