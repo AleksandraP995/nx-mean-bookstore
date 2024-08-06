@@ -5,15 +5,19 @@ import { serviceAccountKey } from './config/serviceAccountKey';
 import config from './config/config';
 import path from 'path';
 import * as admin from 'firebase-admin';
-import adminRoutes from './routes/admin';
-import userRoutes from './routes/users';
-import bookRoutes from "./routes/books";
+import adminRouter from './routes/admin';
+import userRouter from './routes/users';
+import bookRouter from "./routes/books";
+import pdfGeneratorRouter from "./routes/pdf";
 import cors from 'cors';
 import { connectDB } from './postgre/postgreClient';
 import dotenv from 'dotenv';
+import { setupWebSocket } from './websocket/webSocketSetup';
 
 dotenv.config();
 const app = express();
+
+const { server } = setupWebSocket(app);
 
 // Middleware
 app.use(bodyParser.json());
@@ -27,9 +31,10 @@ admin.initializeApp({
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use('/api', adminRoutes);
-app.use('/api', userRoutes);
-app.use('/favorites', bookRoutes);
+app.use('/api', adminRouter);
+app.use('/api', userRouter);
+app.use('/favorites', bookRouter);
+app.use('/pdf', pdfGeneratorRouter);
 
 // Serve static files from the frontend build directory
 const buildPath = path.join(__dirname, 'dist/out-tsc/src');
@@ -44,7 +49,7 @@ const PORT = process.env.PORT || 3000;
 
 connectDB()
   .then(() => {
-    app.listen(PORT, () => {
+    server.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);
     });
   })
