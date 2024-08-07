@@ -13,7 +13,7 @@ export const connectDB = () => {
       .then(() => {
         console.log('Connected to PostgreSQL');
       })
-      .catch((err: any) => {
+      .catch((err) => {
         console.error('Failed to connect to PostgreSQL', err);
         throw err;
       });

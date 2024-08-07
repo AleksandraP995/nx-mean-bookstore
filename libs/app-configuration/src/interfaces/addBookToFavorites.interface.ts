@@ -1,4 +1,4 @@
-export interface AddBookToFavoritesObject {
+export interface FavoriteBook {
   id: number | null,
   user_id: string | null,
   book_id: string | null,

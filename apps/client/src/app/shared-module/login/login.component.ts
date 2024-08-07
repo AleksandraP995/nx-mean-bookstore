@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { BookstoreUser } from '../../../models/user';
 import { AuthService } from '../../../services/authService/auth.service';
 import { loginForm, loginFormFields } from '../../formValidations/forms';
 import { Fields, ValidationErrors } from '../../../app/formValidations/enums';
@@ -10,6 +9,7 @@ import { UserCredentials } from '../../users/userEnums';
 import { NotificationManagerService } from '../../../services/notificationManager/notification-manager.service';
 import { extractUserCredentials, handleError } from '../utils';
 import { trackStatusChanges } from '../../formValidations/utils';
+import { BookstoreUser } from '@org-bookstore/app-configuration';
 
 @Component({
   selector: 'app-login',
@@ -107,7 +107,7 @@ export class LoginComponent implements OnInit {
           this.isLoading = false;
         }
       })
-    } catch (error: any) {
+    } catch (error) {
       handleError(error, this.notificationManager);
     }
   }

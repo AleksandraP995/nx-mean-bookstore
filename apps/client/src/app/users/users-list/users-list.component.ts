@@ -7,10 +7,10 @@ import { PlaceHolderDirective } from '../helloComponent/placeholder-directive';
 import { getCssCustomProperty } from '../../../shared/utils';
 import { signupForm } from '../../formValidations/forms';
 import { AuthService } from '../../../services/authService/auth.service';
-import { BookstoreUser } from '../../../models/user';
 import { Subscription } from 'rxjs';
 import { CustomValidators } from '../../formValidations/customValidators';
 import { NotificationManagerService } from '../../../services/notificationManager/notification-manager.service';
+import { BookstoreUser } from '@org-bookstore/app-configuration';
 
 @Component({
   selector: 'app-users-list',

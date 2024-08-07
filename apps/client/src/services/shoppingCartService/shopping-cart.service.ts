@@ -7,8 +7,8 @@ import {
   ShoppingState,
   TotalPricePerBook,
 } from '../../models/shoppingCart/shoppingState';
-import { BookItem } from '../../models/bookItem/bookItem';
-import { BookstoreUser } from '../../models/user';
+import { BookItem } from '@org-bookstore/app-configuration';
+import { BookstoreUser } from '@org-bookstore/app-configuration';
 
 @Injectable({
   providedIn: 'root',
@@ -104,7 +104,6 @@ export class ShoppingCartService {
   }
 
   saveShoppingList(shoppingList: BookItem[]) {
-    const baseUrl = environment.settings.firebaseDBUrl;
-    return this.http.post(`${baseUrl}/books.json`, shoppingList);
+    return this.http.post(`${environment.settings.apiUrl}/favorites/save-shopping-list`, shoppingList);
   }
 }

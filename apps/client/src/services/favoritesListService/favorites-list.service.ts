@@ -1,11 +1,10 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { BookItem } from '../../models/bookItem/bookItem';
-import { BookstoreUser } from '../../models/user';
 import { NotificationManagerService } from '../notificationManager/notification-manager.service';
 import { environment } from '../../environments/environment';
-import { AddBookToFavoritesObject } from '@org-bookstore/app-configuration';
+import { FavoriteBook, BookstoreUser, BookItem } from '@org-bookstore/app-configuration';
+import { ValidationService } from '../validationService/validation.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +12,8 @@ import { AddBookToFavoritesObject } from '@org-bookstore/app-configuration';
 export class FavoritesListService {
   constructor(
     private http: HttpClient,
-    private notificationManager: NotificationManagerService
+    private notificationManager: NotificationManagerService,
+    private validationService: ValidationService
   ) {
     window.addEventListener('beforeunload', () => this.saveFavoritesState());
   }
@@ -35,13 +35,22 @@ export class FavoritesListService {
     );
   }
 
-  saveBookToFavoritesDB(bookId: string, userId: string): Observable<HttpResponse<AddBookToFavoritesObject>> {
-    return this.http.post<AddBookToFavoritesObject>(`${environment.settings.apiUrl}/favorites/add-book`, { bookId, userId }, 
-      // kako bi observovao ceo response, sa statusom, bodijem itd i da ne bude greska 
+  saveBookToFavoritesDB(bookId: string, userId: string): Observable<HttpResponse<FavoriteBook>> {
+    const { error } = this.validationService.validateBookAndUser(bookId, userId);
+    if(error) {
+      console.error('Validation error ', error.details);
+      throw new Error('Validation failed')
+    }
+    return this.http.post<FavoriteBook>(`${environment.settings.apiUrl}/favorites/add-book`, { bookId, userId },
       { observe: 'response' });
   }
 
   removeBookFromFavoritesDB(bookId: string, userId: string) {
+    const { error } = this.validationService.validateBookAndUser(bookId, userId);
+    if(error) {
+      console.error('Validation error ', error.details);
+      throw new Error('Validation failed')
+    }
     return this.http.delete(`${environment.settings.apiUrl}/favorites/remove-book`, { body: {bookId, userId } })
   }
 
@@ -68,7 +77,7 @@ export class FavoritesListService {
       return;
     }
     this.saveBookToFavoritesDB(item.id, currentUser?.id).subscribe({
-      next: (response: HttpResponse<AddBookToFavoritesObject>) => {
+      next: (response: HttpResponse<FavoriteBook>) => {
         if(response.status == 409) {
           this.notificationManager.openSnackBar(`Book ${item.volumeInfo.title} is already in favorites`);
           return;

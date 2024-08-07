@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BookItem,bookForDisplay } from '../../../models/bookItem/bookItem';
+import { bookForDisplay } from '../../../models/bookItem/bookItem';
 import { BookStoreService } from '../../../services/bookStoreService/book-store.service';
 import { NotificationManagerService } from '../../../services/notificationManager/notification-manager.service';
+import { BookItem } from '@org-bookstore/app-configuration';
 
 @Component({
   selector: 'app-banner-book',

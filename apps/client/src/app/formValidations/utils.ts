@@ -30,7 +30,6 @@ export function trackStatusChanges(
   errorSubject: Subject<{ field: string; error: string | null }>
 ) {
   formFields.forEach((fieldName) => {
-    //ne moze samo return jer se mi ovde subskrajbujemo
     form.get(fieldName)?.statusChanges.subscribe({
       next: () => {
         setValidationError(fieldName, form, errorSubject);

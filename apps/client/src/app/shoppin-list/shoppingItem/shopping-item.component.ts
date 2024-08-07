@@ -1,13 +1,14 @@
 /* eslint-disable no-debugger */
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { finalize, Subscription } from 'rxjs';
-import { bookForDisplay, BookItem } from '../../../models/bookItem/bookItem';
+import { bookForDisplay } from '../../../models/bookItem/bookItem';
 import { ShoppingCartService } from '../../../services/shoppingCartService/shopping-cart.service';
 import { TotalPricePerBook } from '../../../models/shoppingCart/shoppingState';
 import { NotificationManagerService } from '../../..//services/notificationManager/notification-manager.service';
 import { PdfService } from '../../../services/pdfGenerator/pdf.service';
 import { AuthService } from '../../../services/authService/auth.service';
 import { WebSocketMessage } from '../../../models/webSocketMessages';
+import { BookItem } from '@org-bookstore/app-configuration';
 
 @Component({
   selector: 'app-shopping-item',

@@ -1,4 +1,5 @@
-import { BookItem } from "../bookItem/bookItem";
+import { BookItem } from "@org-bookstore/app-configuration";
+
 
 export interface ShoppingState {
     shoppingList: BookItem[]

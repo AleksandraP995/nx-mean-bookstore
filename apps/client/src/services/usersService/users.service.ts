@@ -16,11 +16,11 @@ import {
   GetAllUsersObject,
   UpdateUserEmailObject,
 } from '../../models/userResponses';
-import { BookstoreUser } from '../../models/user';
 import { UserCredentials } from '../../app/users/userEnums';
 import { environment } from '../../environments/environment';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { SetAdminClaimsObject } from '../../models/setAdminClaimsData';
+import { BookstoreUser } from '@org-bookstore/app-configuration';
 
 @Injectable({
   providedIn: 'root',
@@ -108,9 +108,7 @@ export class UsersService {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${idToken}`
               });
-              //jedini nacin da umesto : Observable<any> bude : Observable<SetAdminClaimsObject>
-              //je da dodam pipe koji ce osigurati da ce tip biti SetAdminClaimsObject, u suprotnom baci gresku
-              return this.http.post(`${environment.settings.apiUrl}/api/set-admin-claims`, { uid }, { headers }).pipe(map((response: any) => {
+              return this.http.post(`${environment.settings.apiUrl}/admin/set-admin-claims`, { uid }, { headers }).pipe(map((response: any) => {
                 return { message: response.message } as SetAdminClaimsObject;
               }),
               catchError(error => {

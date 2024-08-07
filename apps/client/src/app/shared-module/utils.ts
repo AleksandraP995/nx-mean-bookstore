@@ -3,10 +3,6 @@ import { ValidationErrors } from '../formValidations/enums';
 import { UserCredentials } from '../users/userEnums';
 import { FormControl } from '@angular/forms';
 
-export function extractFormErrors(formData: any) {
-  return;
-}
-
 export function handleError(
   error: any,
   notificationManager: NotificationManagerService

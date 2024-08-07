@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { BookstoreUser } from '../../../models/user';
 import { AuthService } from '../../../services/authService/auth.service';
+import { BookstoreUser } from '@org-bookstore/app-configuration';
 
 @Component({
   selector: 'app-user-profile-popup',

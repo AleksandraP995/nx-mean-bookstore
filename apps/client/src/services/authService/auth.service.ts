@@ -12,12 +12,12 @@ import {
   switchMap,
   throwError,
 } from 'rxjs';
-import { BookstoreUser } from '../../models/user';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { UserCredentials } from '../../app/users/userEnums';
 import { NotificationManagerService } from '../notificationManager/notification-manager.service';
 import { HttpClient } from '@angular/common/http';
 import { CreateNewUserObject } from '../../models/userResponses';
+import { BookstoreUser } from '@org-bookstore/app-configuration';
 
 @Injectable({
   providedIn: 'root',
@@ -66,9 +66,9 @@ export class AuthService {
     );
   }
 
-  verifyToken(token: string): Observable<any> {
+  verifyToken(token: string): Observable<BookstoreUser> {
     return this.http
-      .post<any>(`${environment.settings.apiUrl}/api/verify-token`, { token })
+      .post<BookstoreUser>(`${environment.settings.apiUrl}/admin/verify-token`, { token })
       .pipe(
         map((response) => {
           return response;
@@ -81,7 +81,6 @@ export class AuthService {
   }
 
   autoLogin() {
-    // debugger
     const userData: BookstoreUser = JSON.parse(
       localStorage.getItem('userData') as string
     );
@@ -92,7 +91,6 @@ export class AuthService {
       ...userData,
       tokenExpirationDate: new Date(userData.tokenExpirationDate),
     };
-    // AKO token nije expired
     if (loadedUser.tokenExpirationDate > new Date()) {
       this.userSubject.next(loadedUser);
     } else {
@@ -108,9 +106,9 @@ export class AuthService {
     return isAdmin;
   }
 
-  createNewUserHttp(loginCredentials: UserCredentials): Observable<any> {
+  createNewUserHttp(loginCredentials: UserCredentials): Observable<CreateNewUserObject> {
     return this.http
-      .post<any>(
+      .post<CreateNewUserObject>(
         `${environment.settings.apiUrl}/api/add-user`,
         loginCredentials
       )
@@ -122,7 +120,7 @@ export class AuthService {
       );
   }
 
-  createNewUser(loginCredentials: UserCredentials): Observable<any> {
+  createNewUser(loginCredentials: UserCredentials): Observable<CreateNewUserObject['user']> {
     return this.createNewUserHttp(loginCredentials).pipe(
       switchMap((response: CreateNewUserObject) => {
         const userRecord = response.user;

@@ -13,12 +13,11 @@ import { ShoppingStepperComponent } from '../shoppin-list/shoppingStepper/shoppi
 import { ShoppingCartService } from '../../services/shoppingCartService/shopping-cart.service';
 import { FavoritesListService } from '../../services/favoritesListService/favorites-list.service';
 import { AuthService } from '../../services/authService/auth.service';
-import { BookstoreUser } from '../../models/user';
 import { getCssCustomProperty } from '../../shared/utils';
 import { NotificationManagerService } from '../../services/notificationManager/notification-manager.service';
 import { ShoppingDialogData } from '../../models/shoppingCart/shoppingDialogData';
 import { Subscription } from 'rxjs';
-import { BookItem } from '../../models/bookItem/bookItem';
+import { BookItem, BookstoreUser } from '@org-bookstore/app-configuration';
 
 @Component({
   selector: 'app-nav-bar',

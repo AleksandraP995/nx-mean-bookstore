@@ -3,7 +3,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { discountsList } from '../../models/shoppingListEnums';
 import { ShoppingCartService } from '../../services/shoppingCartService/shopping-cart.service';
-import { BookItem } from '../../models/bookItem/bookItem';
+import { BookItem } from '@org-bookstore/app-configuration';
 
 @Component({
   selector: 'app-shopping-list',

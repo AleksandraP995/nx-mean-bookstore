@@ -7,9 +7,9 @@ import { Messages } from '../../../../models/usersEnums';
 import { getCssCustomProperty } from '../../../../shared/utils';
 import { NotificationManagerService } from '../../../../services/notificationManager/notification-manager.service';
 import { AdminRoleComponent } from '../../adminRole/admin-role.component';
-import { BookstoreUser } from '../../../../models/user';
 import { SetAdminClaimsData } from '../../../../models/setAdminClaimsData';
 import { AuthService } from '../../../../services/authService/auth.service';
+import { BookstoreUser } from '@org-bookstore/app-configuration';
 
 @Component({
   selector: 'app-user-card',

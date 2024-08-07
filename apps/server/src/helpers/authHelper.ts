@@ -1,3 +1,4 @@
+import { CustomClaims } from '@org-bookstore/app-configuration';
 import admin from 'firebase-admin';
 
 async function setUserClaims(email: string) {
@@ -13,15 +14,14 @@ async function setUserClaims(email: string) {
     console.log('Admin claims set for user:', email);
   }
 
-  // Return the user with updated claims
   return admin.auth().getUser(userRecord.uid);
 }
 
-function checkAdminClaims(customClaims: any) {
+function checkAdminClaims(customClaims: CustomClaims) {
   return customClaims ? customClaims.admin || customClaims.superAdmin : false;
 }
 
-function checkSuperAdminClaims(customClaims: any) {
+function checkSuperAdminClaims(customClaims: CustomClaims) {
   return customClaims && customClaims.superAdmin ? true : false;
 }
 

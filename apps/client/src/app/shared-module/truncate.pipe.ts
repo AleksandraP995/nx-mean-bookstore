@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from "@angular/core";
     name: 'truncate'
 })
 export class TruncatePipe implements PipeTransform {
-    transform(value: any, limit: number) {
+    transform(value: string, limit: number) {
         if(value.length < limit) {
             return value
         }

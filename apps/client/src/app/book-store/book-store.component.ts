@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BookStoreService } from '../../services/bookStoreService/book-store.service';
 import { BookQueryParams } from '../../models/shoppingListEnums';
 import { Subscription } from 'rxjs';
-import { BookstoreUser } from '../../models/user';
 import { AuthService } from '../../services/authService/auth.service';
+import { BookstoreUser } from '@org-bookstore/app-configuration';
 
 @Component({
   selector: 'app-book-store',
@@ -41,7 +41,6 @@ export class BookStoreComponent implements OnInit {
   }
 
   getResults() {
-    // this.query == '' && (this.query = 'all');
     this.bookStoreService.searchBooks(
       this.query,
       BookQueryParams.maxResult,

@@ -11,7 +11,6 @@ const authenticate = async (req: Request, res: Response, next: NextFunction): Pr
 
   try {
     const decodedToken = await admin.auth().verifyIdToken(idToken);
-    // TODO: pokusala da prosirim REQ objekat globalno ali nece
     (req as any).authId = decodedToken.uid;
     next();
   } catch (error) {

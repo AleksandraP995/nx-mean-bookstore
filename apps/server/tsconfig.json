@@ -5,14 +5,7 @@
   "references": [],
   "compilerOptions": {
     "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "paths": {
-        "@org-bookstore/app-configuration": [
-          "../../libs/app-configuration/src/index.ts"
-        ],
-        "@org-bookstore/interfaces/*": [
-        "../../libs/app-configuration/src/*"
-      ]
-    },
+    "resolveJsonModule": true
   },
+  "exclude": ["node_modules", "dist"]
 }

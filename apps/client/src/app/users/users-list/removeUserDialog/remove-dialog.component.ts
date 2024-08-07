@@ -11,7 +11,7 @@ export class RemoveDialogComponent implements OnInit {
 
   constructor(
   public dialogRef: MatDialogRef<RemoveDialogComponent>,
-  @Inject(MAT_DIALOG_DATA) public data: any
+  @Inject(MAT_DIALOG_DATA) public data: { email: string}
 ) { }
 
   ngOnInit(): void {

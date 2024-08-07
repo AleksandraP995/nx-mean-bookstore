@@ -6,14 +6,18 @@ import { BehaviorSubject, ObservableInput, throwError } from 'rxjs';
 import { bookForDisplay } from '../../models/bookItem/bookItem';
 import { environment } from '../../environments/environment';
 import { AuthService } from '../authService/auth.service';
-import { BookstoreUser } from '../../models/user';
-import { BookItem } from '../../models/bookItem/bookItem';
+import { BookItem, BookstoreUser } from '@org-bookstore/app-configuration';
+import { ValidationService } from '../validationService/validation.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookStoreService {
-  constructor(protected http: HttpClient, private readonly authService: AuthService) {}
+  constructor(
+    protected http: HttpClient,
+    private readonly authService: AuthService,
+    private validationService: ValidationService
+  ) {}
 
   private booksSubject = new BehaviorSubject<BookItem[]>([]);
   get booksObservable$() {
@@ -35,13 +39,21 @@ export class BookStoreService {
   }
 
   searchBooks(query: string, maxResults: number, startIndex: number): void {
-    let params = new HttpParams()
+    const { error } = this.validationService.validateGoogleBooksQueries(
+      query,
+      maxResults,
+      startIndex
+    );
+    if (error) {
+      console.error('Validation error ', error.details);
+      throw new Error('Validation failed');
+    }
+    const params = new HttpParams()
       .set('q', query)
       .set('maxResults', maxResults)
-      .set('startIndex', startIndex)
-      .set('key', environment.settings.googleBooksApiKey)
+      .set('startIndex', startIndex);
 
-    const url = `${environment.settings.googleBooksApiUrl}/volumes`;
+    const url = `${environment.settings.apiUrl}/favorites/google-books`;
 
     this.authService.userObservable$
       .pipe(
@@ -60,7 +72,7 @@ export class BookStoreService {
       });
   }
 
-  private handleError(error: ObservableInput<any>) {
+  private handleError(error: ObservableInput<string>) {
     console.error('An error occurred', error);
     return throwError(() => new Error('Failed to fetch books'));
   }

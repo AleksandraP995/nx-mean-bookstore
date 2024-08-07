@@ -8,10 +8,10 @@ import {
   checkSuperAdminClaims,
   setUserClaims
 } from '../helpers/authHelper';
+import { BookstoreUser } from '@org-bookstore/app-configuration';
 
 const router = express.Router();
 
-// retrieve all users from firebase users
 router.get('/users', async (req: Request, res: Response) => {
   try {
     const userList = await admin.auth().listUsers();
@@ -122,7 +122,7 @@ router.post('/check-user', async (req: Request, res: Response) => {
   try {
     const userRecord = await admin.auth().getUserByEmail(email);
     res.status(200).json({ exists: true, user: userRecord });
-  } catch (error:any) {
+  } catch (error) {
     if (error.code === 'auth/user-not-found') {
       res.status(200).json({ exists: false });
     } else {

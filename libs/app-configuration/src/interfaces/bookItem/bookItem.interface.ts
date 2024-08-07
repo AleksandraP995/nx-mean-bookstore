@@ -1,6 +1,6 @@
 
-import { AccessInfo, SaleInfo } from "./accessInfo";
-import { VolumeInfo } from "./volumeInfo";
+import { AccessInfo, SaleInfo } from "./accessInfo.interface";
+import { VolumeInfo } from "./volumeInfo.interface";
 
 export interface BookItem {
     kind: string;

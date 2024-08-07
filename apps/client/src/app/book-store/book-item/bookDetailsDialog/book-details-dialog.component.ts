@@ -2,10 +2,10 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ShoppingCartService } from '../../../../services/shoppingCartService/shopping-cart.service';
 import { FavoritesListService } from '../../../../services/favoritesListService/favorites-list.service';
-import { BookItem, bookForDisplay} from '../../../../models/bookItem/bookItem';
+import { bookForDisplay} from '../../../../models/bookItem/bookItem';
 import { Subscription } from 'rxjs';
-import { BookstoreUser } from '../../../../models/user';
 import { AuthService } from '../../../../services/authService/auth.service';
+import { BookItem, BookstoreUser } from '@org-bookstore/app-configuration';
 
 @Component({
   selector: 'app-book-details-dialog',
@@ -22,14 +22,13 @@ export class BookDetailsDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<BookDetailsDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: BookItem,
     public shoppingService: ShoppingCartService,
     public favoritesService: FavoritesListService,
     private authService: AuthService
   ) {}
 
   ngOnInit(): void {
-    // proveri
     this.data = this.book;
     this.favoritesService.isFavoriteObservable$.subscribe(isFavorite => {
       this.favoritesService.isFoundInFavorites = isFavorite;

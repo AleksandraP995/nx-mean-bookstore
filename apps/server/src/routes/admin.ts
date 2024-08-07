@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import express, { Request, Response } from 'express';
 import { checkAdminClaims, checkSuperAdminClaims } from '../helpers/authHelper';
 import { calculateTokenExpirationDate } from '../helpers/userHelper';
 import admin from 'firebase-admin';
-import authenticate from '../middlewares/authentication';
+import authenticate from '../middlewares/authentication.middleware';
+import { BookstoreUser } from '@org-bookstore/app-configuration';
 
 const router = express.Router();
 
@@ -34,7 +36,7 @@ router.post('/set-admin-claims', authenticate, async (req: Request | any, res: R
   }
 });
 
-router.post('/verify-token', async (req: Request, res: Response) => {
+router.post('/verify-token', async (req: Request<{}, {}, BookstoreUser | any>, res) => {
   const { token } = req.body;
 
   try {
@@ -50,7 +52,8 @@ router.post('/verify-token', async (req: Request, res: Response) => {
       isAdmin: isAdmin,
       isSuperAdmin: isSuperAdmin,
       tokenExpirationDate: tokenExpirationDate,
-      isExpired: isExpired
+      isExpired: isExpired,
+      creationTime: new Date(userRecord.metadata.creationTime)
     });
   } catch (error) {
     console.error('Error verifying token:', error);

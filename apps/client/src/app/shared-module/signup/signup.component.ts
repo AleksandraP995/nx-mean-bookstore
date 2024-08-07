@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { BookstoreUser } from '../../../models/user';
 import { AuthService } from '../../../services/authService/auth.service';
 import { CustomValidators } from '../../formValidations/customValidators';
 import { UsersService } from '../../../services/usersService/users.service';
@@ -18,6 +17,7 @@ import { extractUserCredentials, handleError } from '../utils';
 import { MatDialogRef } from '@angular/material/dialog';
 import { NewUserDialogComponent } from '../../users/users-list/newUserDialog/new-user-dialog.component';
 import { trackStatusChanges } from '../../formValidations/utils';
+import { BookstoreUser } from '@org-bookstore/app-configuration';
 
 @Component({
   selector: 'app-signup',
@@ -36,7 +36,6 @@ export class SignupComponent implements OnInit {
   passwordError: string | null = null;
   emailError: string | null = null;
   usernameError: string | null = null;
-  // submitType = SubmitType.SignUp;
   @Input() submitType: string = SubmitType.SignUp;
 
   constructor(
@@ -155,13 +154,10 @@ export class SignupComponent implements OnInit {
         this.password as FormControl | null,
         this.userName as FormControl | null
       );
-      //pocetni signup
       if (this.submitType === SubmitType.SignUp) {
         this.signupAndNavigate(userCredentials);
       }
-      //u slucaju da admin dodaje novog usera, samo kreira novog usera
       if (this.submitType === SubmitType.Login) {
-        // debugger
         await this.createNewUserFromAdminRole(userCredentials);
         this.dialogRef.close();
       }

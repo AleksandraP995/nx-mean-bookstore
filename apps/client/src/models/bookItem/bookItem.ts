@@ -1,19 +1,5 @@
 
-import { AccessInfo, SaleInfo } from "./accessInfo";
-import { VolumeInfo } from "./volumeInfo";
-
-export interface BookItem {
-    kind: string;
-    id: string;
-    etag: string;
-    selfLink: string;
-    volumeInfo: VolumeInfo;
-    saleInfo: SaleInfo;
-    accessInfo: AccessInfo;
-    searchInfo: {
-      textSnippet: string;
-    };
-  }
+import { BookItem } from "@org-bookstore/app-configuration";
 
   export const bookForDisplay: BookItem = {
     kind: '',

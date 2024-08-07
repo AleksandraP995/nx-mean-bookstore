@@ -1,15 +1,47 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import express from 'express';
+import * as admin from 'firebase-admin';
 import client from '../postgre/postgreClient';
-import { AddBookToFavoritesObject } from '../../../../libs/app-configuration/src/interfaces/addBookToFavorites.interface';
-// import { AddBookToFavoritesObject } from '@org-bookstore/interfaces/lib/app-configuration';
-
+import axios from 'axios';
+import { BookItem, FavoriteBook } from '@org-bookstore/app-configuration';
+import { validateBookUserId, validateQueries } from '../middlewares/validateRequest.middleware';
 const router = express.Router();
 
-router.post('/add-book', async (req, res) => {
+router.get('/google-books', validateQueries, async (req, res) => {
+  const { q, maxResults, startIndex } = req.query;
+  try {
+    const response = await axios.get(process.env.GOOGLE_BOOKS_API_URL, {
+      params: {
+        q,
+        maxResults,
+        startIndex,
+        key: process.env.GOOGLE_BOOKS_API_KEY,
+      },
+    });
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    res.status(500).send('Error fetching data');
+  }
+});
+
+router.post('/save-shopping-list', async (req, res) => {
+  const shoppingList: BookItem[] = req.body;
+  try {
+    const db = admin.database();
+    const ref = db.ref('books');
+    await ref.push(shoppingList);
+    res.status(200).send('Shopping list saved successfuly')
+  } catch(err) {
+    console.error('Error fetching data:', err);
+    res.status(500).send('Error fetching data');
+  }
+})
+
+router.post('/add-book', validateBookUserId, async (req, res) => {
   const { bookId, userId } = req.body;
 
   try {
-    // provera da li on vec postoji u bazi prvo, ali to ne moze preko UI-ja da se desi
     const checkFavoritesQuery =
       'SELECT * FROM favorites WHERE user_id = $1 AND book_id = $2';
     const checkResult = await client.query(checkFavoritesQuery, [
@@ -30,7 +62,7 @@ router.post('/add-book', async (req, res) => {
       bookId,
     ]);
 
-    const addedFavorite: AddBookToFavoritesObject = result.rows[0];
+    const addedFavorite: FavoriteBook = result.rows[0];
     res.status(201).json(addedFavorite);
   } catch (error) {
     console.error('Error adding to favorites:', error);
@@ -38,7 +70,7 @@ router.post('/add-book', async (req, res) => {
   }
 });
 
-router.delete('/remove-book', async (req, res) => {
+router.delete('/remove-book', validateBookUserId, async (req, res) => {
   const { bookId, userId } = req.body;
 
   try {

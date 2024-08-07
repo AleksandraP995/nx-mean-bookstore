@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BookItem } from '../../../models/bookItem/bookItem';
 import { FavoritesListService } from '../../../services/favoritesListService/favorites-list.service';
+import { BookItem } from '@org-bookstore/app-configuration';
 
 @Component({
   selector: 'app-favorites-list',
