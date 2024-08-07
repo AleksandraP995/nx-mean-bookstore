@@ -1,5 +1,5 @@
 export const serviceAccountKey = {
-  type: "service_account",
+  type: process.env.FIREBASE_TYPE,
   project_id: process.env.FIREBASE_PROJECT_ID,
   private_key_id: process.env.FIREBASE_KEY_ID,
   private_key: process.env.FIREBASE_PRIVATE_KEY,
