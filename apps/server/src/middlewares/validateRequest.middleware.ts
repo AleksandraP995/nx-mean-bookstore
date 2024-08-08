@@ -16,4 +16,4 @@ export const validateQueries  = (req, res, next) => {
     next();
 }
 
-module.exports = validateBookUserId, validateQueries;
+export default { validateBookUserId, validateQueries };

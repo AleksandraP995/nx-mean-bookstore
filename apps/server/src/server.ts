@@ -1,33 +1,38 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import { serviceAccountKey } from './config/serviceAccountKey';
 import path from 'path';
 import * as admin from 'firebase-admin';
-import adminRouter from './routes/admin';
-import userRouter from './routes/users';
-import bookRouter from "./routes/books";
-import pdfGeneratorRouter from "./routes/pdf";
+import adminRouter from './routes/admin.routes';
+import userRouter from './routes/users.routes';
+import bookRouter from "./routes/favorites.routes";
+import pdfGeneratorRouter from "../src/routes/pdf.routes";
 import cors from 'cors';
-import { connectDB } from './postgre/postgreClient';
+import { connectDB } from './services/database/postgres.client';
 import dotenv from 'dotenv';
-import { setupWebSocket } from './websocket/webSocketSetup';
+import { setupWebSocket } from './services/websocket.service';
 
+// Load environment variables
 dotenv.config();
+  
 const app = express();
 
+// Setup WebSocket
 const { server } = setupWebSocket(app);
 
-app.use(bodyParser.json());
+// Middleware
 app.use(cors());
+app.use(bodyParser.json()); 
 
+// Initialize Firebase Admin
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccountKey as admin.ServiceAccount),
-  databaseURL: process.env.FIREBASE_URL,
+  credential: admin.credential.cert({
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+    privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+  }),
 });
 
-app.use(cors());
-app.use(bodyParser.json());
-
+// Routes
 app.use('/admin', adminRouter);
 app.use('/api', userRouter);
 app.use('/favorites', bookRouter);

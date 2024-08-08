@@ -1,10 +1,10 @@
 
 import path from 'path';
-import { ensureOutputDirectory } from '../pdfGenerator/ensureOutputDirectory';
-import { createPDFDocument } from '../pdfGenerator/createPDFDocument';
-import { savePDFPathToDatabase } from '../pdfGenerator/savePDFToDatabase';
-import { simulateLongRunningTask } from '../pdfGenerator/simulateLongRunningTaks';
-import { writePDFToFile } from '../pdfGenerator/writePDFToFile';
+import { ensureOutputDirectory } from './creator/ensureOutputDirectory';
+import { createPDFDocument } from './creator/createPDFDocument';
+import { savePDFPathToDatabase } from './database/savePDFToDatabase';
+import { simulateLongRunningTask } from './simulator/simulateLongRunningTaks';
+import { writePDFToFile } from './creator/writePDFToFile';
 
 export const generatePDF = async (
   text: string,

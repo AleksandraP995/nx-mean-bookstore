@@ -1,4 +1,4 @@
-import client from '../postgre/postgreClient';
+import client from '../../../../services/database/postgres.client';
 
 export const savePDFPathToDatabase = async (userId: string, pdfPath: string): Promise<void> => {
   try {

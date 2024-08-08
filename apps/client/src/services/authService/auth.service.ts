@@ -107,17 +107,12 @@ export class AuthService {
   }
 
   createNewUserHttp(loginCredentials: UserCredentials): Observable<CreateNewUserObject> {
-    return this.http
-      .post<CreateNewUserObject>(
-        `${environment.settings.apiUrl}/api/add-user`,
-        loginCredentials
-      )
-      .pipe(
-        catchError((error) => {
-          console.error('Failed to create user: ', error);
-          return throwError(() => new Error('Failed to create user: ' + error));
-        })
-      );
+    return this.http.post<CreateNewUserObject>(`${environment.settings.apiUrl}/api/add-user`, loginCredentials).pipe(
+      catchError((error) => {
+        console.error('Failed to create user: ', error);
+        return throwError(() => new Error('Failed to create user: ' + error.message));
+      })
+    );
   }
 
   createNewUser(loginCredentials: UserCredentials): Observable<CreateNewUserObject['user']> {

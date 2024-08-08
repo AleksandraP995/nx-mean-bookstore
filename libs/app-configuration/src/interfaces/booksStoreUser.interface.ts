@@ -5,7 +5,7 @@ export interface BookstoreUser {
     isSuperAdmin: boolean;
     tokenExpirationDate: Date;
     isExpired: boolean;
-    creationTime: Date;
+    creationTime: string; //bilo Date
     username?: string;
 }
 
