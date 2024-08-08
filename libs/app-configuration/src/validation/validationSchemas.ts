@@ -1,4 +1,4 @@
-import Joi from 'joi';
+import * as Joi from 'joi';
 
 export const bookUserIdSchema = Joi.object({
     bookId: Joi.string().required(),
